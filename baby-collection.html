@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <script>
-/* Image fallback: every <img> calls this onerror. Tries data-fallback once, then marks the image missing so the soft gradient behind it shows. */
+/* Image fallback: every <img decoding="async"> calls this onerror. Tries data-fallback once, then marks the image missing so the soft gradient behind it shows. */
 function imgFail(i){
   /* 1) a failed <source> in <picture> does not fall back on its own: drop the sources and retry the plain src */
   var p=i.parentNode;
@@ -1810,7 +1810,7 @@ header.nav .menu-btn:active{transform:none}
 <header class="nav" id="nav">
   <div class="wrap nav-in"><i class="nav-prog" aria-hidden="true"></i>
     <a class="brand" href="combine.html" aria-label="Techzoo Hangers, home">
-      <img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true"><span class="brand-word"><b>Tech</b><i>zoo</i></span>
+      <img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true" decoding="async"><span class="brand-word"><b>Tech</b><i>zoo</i></span>
     </a>
     <nav aria-label="Primary">
       <ul id="navlist">
@@ -1830,7 +1830,7 @@ header.nav .menu-btn:active{transform:none}
 <main id="main" style="position:relative;isolation:isolate">
 <div class="bb-art" id="bbArt" aria-hidden="true"></div>
 <section class="kc-hero" id="top" aria-labelledby="kc-h">
-  <img class="kc-bg" src="assets/images/Baby banner collection.jpg" alt="Compact velvet baby hangers in blue, pink, cream, lilac and black on a crib rail with soft knitted newborn clothes" width="1904" height="560" fetchpriority="high" onerror="imgFail(this)">
+  <img class="kc-bg" src="assets/images/Baby banner collection.jpg" alt="Compact velvet baby hangers in blue, pink, cream, lilac and black on a crib rail with soft knitted newborn clothes" width="1904" height="560" fetchpriority="high" onerror="imgFail(this)" decoding="async">
   <div class="wrap kc-hero-in">
     <nav class="kc-crumbs" aria-label="Breadcrumb"><a href="combine.html">Home</a><i aria-hidden="true">/</i><a href="combine.html#shop">Collections</a><i aria-hidden="true">/</i><span aria-current="page">Baby</span></nav>
     <p class="kc-kick"><b>For the tiniest ones</b><i aria-hidden="true"></i></p>
@@ -1872,7 +1872,7 @@ header.nav .menu-btn:active{transform:none}
   </div>
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="brand" href="combine.html" aria-label="Techzoo Hangers, home"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" loading="lazy" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true"><span class="brand-word"><b>Tech</b><i>zoo</i></span></a>
+      <a class="brand" href="combine.html" aria-label="Techzoo Hangers, home"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" loading="lazy" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true" decoding="async"><span class="brand-word"><b>Tech</b><i>zoo</i></span></a>
       <p>Techzoo Store brings premium quality velvet hangers and home essentials designed for elegance and durability. We focus on quality, comfort, and everyday convenience.</p>
       <ul class="social" aria-label="Social">
         <li><a id="sFb" style="--b:#1877F2" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.2-1.2 1.3-1.2H17V3.1C16.6 3 15.6 3 14.6 3 12.2 3 10.6 4.4 10.6 7v1.5H8v3h2.6V21H14v-9.5h2.6l.4-3z" fill="currentColor"/></svg><span>Facebook</span></a></li><li><a id="sIg" style="--b:#E4405F" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect class="ig" x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="12" cy="12" r="4" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="17.2" cy="6.8" r="1.25" fill="url(#igG)"/></svg><span>Instagram</span></a></li><li><a id="sPin" style="--b:#E60023" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.5 8.5 0 0 0-3.1 16.4c-.1-.7-.1-1.7 0-2.4l1-4.2s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.2 0 .8-.5 1.9-.7 3-.2.9.5 1.6 1.4 1.6 1.7 0 3-1.8 3-4.3 0-2.3-1.6-3.9-4-3.9-2.7 0-4.3 2-4.3 4.1 0 .8.3 1.7.7 2.2.1.1.1.2.1.3l-.3 1.1c0 .2-.1.2-.3.1-1.2-.5-2-2.3-2-3.7 0-3 2.2-5.8 6.3-5.8 3.3 0 5.9 2.4 5.9 5.5 0 3.3-2.1 6-5 6-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.8 1.9-1.2 2.5A8.5 8.5 0 1 0 12 3z" fill="currentColor"/></svg><span>Pinterest</span></a></li>

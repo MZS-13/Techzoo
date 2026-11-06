@@ -118,7 +118,7 @@
 }
 </script>
 <script>
-/* Image fallback: every <img> calls this onerror. Tries data-fallback once, then marks the image missing so the soft gradient behind it shows. */
+/* Image fallback: every <img decoding="async"> calls this onerror. Tries data-fallback once, then marks the image missing so the soft gradient behind it shows. */
 function imgFail(i){
   /* 1) a failed <source> in <picture> does not fall back on its own: drop the sources and retry the plain src */
   var p=i.parentNode;
@@ -1791,7 +1791,7 @@ header.nav .menu-btn:active{transform:none}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="curtain" aria-hidden="true"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true"><span>Tech<i>zoo</i></span></div>
+<div class="curtain" aria-hidden="true"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true" decoding="async"><span>Tech<i>zoo</i></span></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="nx-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></symbol>
@@ -1825,7 +1825,7 @@ header.nav .menu-btn:active{transform:none}
 <header class="nav" id="nav">
   <div class="wrap nav-in"><i class="nav-prog" aria-hidden="true"></i>
     <a class="brand" href="#top" aria-label="Techzoo Hangers, back to top">
-      <img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true"><span class="brand-word"><b>Tech</b><i>zoo</i></span>
+      <img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true" decoding="async"><span class="brand-word"><b>Tech</b><i>zoo</i></span>
     </a>
     <nav aria-label="Primary">
       <ul id="navlist">
@@ -1849,7 +1849,7 @@ header.nav .menu-btn:active{transform:none}
   <div class="hero-media" id="heroMedia">
     <picture>
       <source media="(max-width:760px)" srcset="assets/images/hero-closet-mobile.jpg">
-      <img src="assets/images/hero-closet.jpg" data-fallback="after-closet.jpg|lifestyle-bedroom.jpg" alt="A bright walk-in closet in oak and cream, with clothes hung evenly" width="1376" height="768" fetchpriority="high" onerror="imgFail(this)">
+      <img src="assets/images/hero-closet.jpg" data-fallback="after-closet.jpg|lifestyle-bedroom.jpg" alt="A bright walk-in closet in oak and cream, with clothes hung evenly" width="1376" height="768" fetchpriority="high" onerror="imgFail(this)" decoding="async">
     </picture>
   </div>
   <div class="wrap hero-in">
@@ -1864,7 +1864,7 @@ header.nav .menu-btn:active{transform:none}
       <p class="hero-note">Over a million happy customers since 2015</p>
     </div>
     <a class="hero-card" href="#shop" aria-label="See the velvet hangers up close">
-      <span class="hc-img ph"><img src="assets/images/detail-hook-360.jpg" data-fallback="detail-velvet-texture.jpg|product-adult-ivory.jpg" alt="A velvet hanger on a brass rod with a chrome swivel hook" width="800" height="1000" fetchpriority="high" onerror="imgFail(this)"></span>
+      <span class="hc-img ph"><img src="assets/images/detail-hook-360.jpg" data-fallback="detail-velvet-texture.jpg|product-adult-ivory.jpg" alt="A velvet hanger on a brass rod with a chrome swivel hook" width="800" height="1000" fetchpriority="high" onerror="imgFail(this)" decoding="async"></span>
       <span class="hc-cap"><b>The hanger itself</b><span>Velvet-wrapped, 75 g, 360° hook</span></span>
     </a>
     <div class="hero-tag" aria-hidden="true"><span><small>Holds up to</small><b>10 lbs</b></span></div>
@@ -2129,7 +2129,7 @@ header.nav .menu-btn:active{transform:none}
   </div>
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="brand" href="#top" aria-label="Techzoo Hangers, back to top"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" loading="lazy" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true"><span class="brand-word"><b>Tech</b><i>zoo</i></span></a>
+      <a class="brand" href="#top" aria-label="Techzoo Hangers, back to top"><img src="assets/images/logo-techzoo.png" alt="" width="320" height="129" loading="lazy" onerror="imgFail(this)" onload="this.nextElementSibling.hidden=true" decoding="async"><span class="brand-word"><b>Tech</b><i>zoo</i></span></a>
       <p>Techzoo Store brings premium quality velvet hangers and home essentials designed for elegance and durability. We focus on quality, comfort, and everyday convenience.</p>
       <ul class="social" aria-label="Social">
         <li><a id="sFb" style="--b:#1877F2" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.2-1.2 1.3-1.2H17V3.1C16.6 3 15.6 3 14.6 3 12.2 3 10.6 4.4 10.6 7v1.5H8v3h2.6V21H14v-9.5h2.6l.4-3z" fill="currentColor"/></svg><span>Facebook</span></a></li><li><a id="sIg" style="--b:#E4405F" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect class="ig" x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="12" cy="12" r="4" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="17.2" cy="6.8" r="1.25" fill="url(#igG)"/></svg><span>Instagram</span></a></li><li><a id="sPin" style="--b:#E60023" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.5 8.5 0 0 0-3.1 16.4c-.1-.7-.1-1.7 0-2.4l1-4.2s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.2 0 .8-.5 1.9-.7 3-.2.9.5 1.6 1.4 1.6 1.7 0 3-1.8 3-4.3 0-2.3-1.6-3.9-4-3.9-2.7 0-4.3 2-4.3 4.1 0 .8.3 1.7.7 2.2.1.1.1.2.1.3l-.3 1.1c0 .2-.1.2-.3.1-1.2-.5-2-2.3-2-3.7 0-3 2.2-5.8 6.3-5.8 3.3 0 5.9 2.4 5.9 5.5 0 3.3-2.1 6-5 6-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.8 1.9-1.2 2.5A8.5 8.5 0 1 0 12 3z" fill="currentColor"/></svg><span>Pinterest</span></a></li>
@@ -2307,7 +2307,7 @@ if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 
   /* reveal */
   const wipes=new Map();
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');(wipes.get(e.target)||[]).forEach(w=>w.classList.add('in'));io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');(wipes.get(e.target)||[]).forEach(w=>w.classList.add('in'));io.unobserve(e.target)}}),{rootMargin:'0px 0px 0px 0px',threshold:.05});
   /* a fully clipped element reports no intersection, so .wipe is revealed through its parent */
   window.TZ_reveal=(root=document)=>{root.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));root.querySelectorAll('.wipe:not(.in)').forEach(w=>{const p=w.parentElement;if(!wipes.has(p))wipes.set(p,[]);wipes.get(p).push(w);io.observe(p)})};
   document.querySelectorAll('main>section').forEach((sec,i)=>sec.style.setProperty('--si',i));
@@ -2430,7 +2430,7 @@ function inView(el,cb,opts={threshold:.35}){const o=new IntersectionObserver(es=
 function onProgress(el,cb){
   if(window.ScrollTrigger){ScrollTrigger.create({trigger:el,start:'top top',end:'bottom bottom',onUpdate:t=>cb(t.progress),onRefresh:t=>cb(t.progress)});return}
   const f=()=>{const r=el.getBoundingClientRect(),t=r.height-innerHeight;cb(t>0?Math.max(0,Math.min(1,-r.top/t)):0)};
-  addEventListener('scroll',()=>requestAnimationFrame(f),{passive:true});addEventListener('resize',f);f();
+  let fq=0;addEventListener('scroll',()=>{if(!fq)fq=requestAnimationFrame(()=>{fq=0;f()})},{passive:true});addEventListener('resize',f);f();
 }
 /* crossfade a new photo over the current one inside box; the fallback chain always ends on a real photo */
 function crossfade(box,src,fb,alt,cls,cb){
@@ -2587,14 +2587,14 @@ function crossfade(box,src,fb,alt,cls,cb){
    ========================================================= */
 (function smoothScroll(){
   if(reduceMotion||!window.Lenis)return;
-  const lenis=new Lenis({duration:1.15,easing:t=>1-Math.pow(1-t,4),smoothWheel:true});
+  const lenis=new Lenis({duration:.9,easing:t=>1-Math.pow(1-t,4),smoothWheel:true});
   document.documentElement.classList.add('lenis','lenis-smooth');
   if(window.ScrollTrigger&&window.gsap){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
   else{const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
   document.addEventListener('click',e=>{
     const a=e.target.closest('a[href^="#"]');if(!a)return;
     const h=a.getAttribute('href');if(h.length<2)return;const t=document.querySelector(h);if(!t)return;
-    e.preventDefault();lenis.scrollTo(t,{offset:-72,duration:1.5});
+    e.preventDefault();lenis.scrollTo(t,{offset:-72,duration:1.2});
   });
   window.TZ_lenis=lenis;
 })();
@@ -2722,7 +2722,7 @@ const Cart=(function(){
     $('#subtotal').textContent=fmt(sub);
     const left=50-sub;$('#shipTxt').textContent=left>0?'You are '+fmt(left)+' away from free shipping.':'Your order has free shipping.';
     $('#shipBar').style.transform='scaleX('+clamp(sub/50,0,1)+')';
-    dl.innerHTML=items.length?items.map((x,i)=>{const c=col(x.k,x.c),p=STORE_DATA.products[x.k];return '<div class="it" data-i="'+i+'"><div class="th"><img src="assets/images/product-'+x.k+'-'+c.id+'.jpg" data-fallback="'+FB[x.k]+'" alt="" width="72" height="72" onerror="imgFail(this)"></div><div><h3>'+TITLE[x.k]+'</h3><small>'+c.name+'</small><div class="qty"><button type="button" data-a="minus" aria-label="Fewer '+TITLE[x.k]+', '+c.name+'">&minus;</button><span aria-live="polite">'+x.q+'</span><button type="button" data-a="plus" aria-label="More '+TITLE[x.k]+', '+c.name+'">+</button></div></div><div style="text-align:right"><div class="pz">'+fmt(x.q*PR.now)+'</div><button class="rmv" type="button" data-a="rm">Remove</button></div></div>'}).join(''):'<p class="empty">Your basket is empty. Add a hanger and it appears here.</p>';
+    dl.innerHTML=items.length?items.map((x,i)=>{const c=col(x.k,x.c),p=STORE_DATA.products[x.k];return '<div class="it" data-i="'+i+'"><div class="th"><img src="assets/images/product-'+x.k+'-'+c.id+'.jpg" data-fallback="'+FB[x.k]+'" alt="" width="72" height="72" onerror="imgFail(this)" decoding="async"></div><div><h3>'+TITLE[x.k]+'</h3><small>'+c.name+'</small><div class="qty"><button type="button" data-a="minus" aria-label="Fewer '+TITLE[x.k]+', '+c.name+'">&minus;</button><span aria-live="polite">'+x.q+'</span><button type="button" data-a="plus" aria-label="More '+TITLE[x.k]+', '+c.name+'">+</button></div></div><div style="text-align:right"><div class="pz">'+fmt(x.q*PR.now)+'</div><button class="rmv" type="button" data-a="rm">Remove</button></div></div>'}).join(''):'<p class="empty">Your basket is empty. Add a hanger and it appears here.</p>';
     const withV=items.filter(x=>col(x.k,x.c).variant),noV=items.filter(x=>!col(x.k,x.c).variant);
     const co=$('#checkout'),bn=$('#babyNote');
     if(withV.length){co.href=store('/cart/'+withV.map(x=>col(x.k,x.c).variant+':'+x.q).join(','));co.removeAttribute('aria-disabled')}
