@@ -3124,9 +3124,8 @@ document.querySelectorAll('.sep-t').forEach(t=>{if(t.querySelector('.pill'))retu
 /* little ones: reveal the tiled teddies on entry, freeze them afterwards */
 (function(){
   const box=document.getElementById('teddies'),sec=document.getElementById('little');if(!box||!sec)return;let t=0;
-  new IntersectionObserver(es=>{es.forEach(e=>{clearTimeout(t);
-    if(e.isIntersecting){box.classList.remove('done');void box.offsetWidth;box.classList.add('in');t=setTimeout(()=>box.classList.add('done'),2600)}
-    else box.classList.remove('in','done')})},{threshold:.1}).observe(sec);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{
+    if(e.isIntersecting){box.classList.add('in');t=setTimeout(()=>box.classList.add('done'),2600);io.disconnect()}})},{threshold:.1});io.observe(sec);
 })();
 </script>
 <script>
