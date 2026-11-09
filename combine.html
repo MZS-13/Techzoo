@@ -1726,6 +1726,13 @@ h1 em,h2 em,h3 em,.step em{font-style:italic;font-weight:400;color:var(--accent-
 .nx .card .vd{display:block;text-align:center;margin-top:10px;font-weight:600;font-size:.9375rem;color:var(--accent-d);text-decoration:underline;text-underline-offset:4px}
 .nx .card .vd:hover{color:var(--text)}
 .nx .idea .mp .vd{align-self:center;margin-right:10px;font-size:.8125rem;font-weight:600;color:var(--accent-d);text-decoration:underline;text-underline-offset:3px}
+.g-item .mp{position:absolute;left:12px;right:12px;bottom:12px;z-index:6;background:var(--surface);border-radius:16px;padding:10px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);box-shadow:0 12px 30px rgba(var(--shadow),.12)}
+.g-item .mp .fr{position:relative;overflow:hidden;background:var(--soft);width:44px;height:44px;border-radius:10px;flex:none}
+.g-item .mp .fr>img{position:absolute;inset:0;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--ox,50%) var(--oy,50%);transform:scale(var(--k,1));transform-origin:var(--ox,50%) var(--oy,50%);will-change:auto}
+.g-item .mp b{font-size:13px;line-height:1.2;flex:1;color:var(--text)}
+.g-item .mp button{background:var(--text);color:var(--surface);border-radius:999px;padding:9px 16px;font-weight:600;font-size:13px}
+.g-item .mp .vd{align-self:center;margin-right:10px;font-size:.8125rem;font-weight:600;color:var(--accent-d);text-decoration:underline;text-underline-offset:3px}
+.g-item figcaption{bottom:auto;top:18px}
 /* ---- collection cards: framed photo, even rhythm, two calm actions ---- */
 .nx .card{padding:12px;overflow:visible}
 .nx .card .im{border:0;border-radius:calc(var(--r-lg) - 8px);box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 10%,transparent) inset}
@@ -2818,6 +2825,12 @@ IDEAS.forEach((d,i)=>{
   const ab=E('button','','Add');ab.type='button';ab.addEventListener('click',()=>addToCart(d.p,d.c,1,mf));const ad=E('a','vd','Details');ad.href=pdp(d.p,d.c);ad.setAttribute('aria-label','View details: '+SD.products[d.p].name+', '+SD.colours[d.p][d.c][0]);mp.append(ad,ab);card.append(mp);rail.appendChild(card);
   const dt=E('button');dt.type='button';dt.setAttribute('role','tab');dt.setAttribute('aria-label','Idea '+(i+1));dt.addEventListener('click',()=>railTo(i));dots.appendChild(dt);
 });
+/* lifestyle gallery: same add-to-cart pill as the Ideas cards */
+(function(){const LS=[['adult',0],['adult',6],['baby',0],['kids',4],['adult',1]];
+$$('#gal .g-item').forEach((it,i)=>{const L=LS[i];if(!L)return;const p=L[0],c=L[1];
+  const mp=E('div','mp');const mf=E('span','fr');const ci2=cardImg(p,SD.colours[p][c]);mf.appendChild(img(ci2.list,'',{crop:ci2.crop}));
+  mp.append(mf);mp.insertAdjacentHTML('beforeend','<b>'+SD.products[p].name+'<br><span style="font-weight:400;color:var(--muted)">'+SD.colours[p][c][0]+', '+fmtC(SD.price)+'</span></b>');
+  const ab=E('button','','Add');ab.type='button';ab.addEventListener('click',()=>addToCart(p,c,1,mf));const ad=E('a','vd','Details');ad.href=pdp(p,c);ad.setAttribute('aria-label','View details: '+SD.products[p].name+', '+SD.colours[p][c][0]);mp.append(ad,ab);it.appendChild(mp)})})();
 function railStep(){const c=rail.firstElementChild;return c?c.getBoundingClientRect().width+20:300}
 function railTo(i){rail.scrollTo({left:i*railStep(),behavior:reduce?'auto':'smooth'})}
 function railDots(){const i=clamp(Math.round(rail.scrollLeft/railStep()),0,IDEAS.length-1);$$('button',dots).forEach((b,k)=>b.setAttribute('aria-selected',k===i))}
