@@ -2841,8 +2841,8 @@ $$('#gal .g-item').forEach((it,i)=>{const L=LS[i];if(!L)return;const p=L[0],c=L[
   const ab=E('button','','Add');ab.type='button';ab.addEventListener('click',()=>addToCart(p,c,1,mf));const ad=E('a','vd','Details');ad.href=pdp(p,c);ad.setAttribute('aria-label','View details: '+SD.products[p].name+', '+SD.colours[p][c][0]);mp.append(ad,ab);it.appendChild(mp)})})();
 function railStep(){const c=rail.firstElementChild;return c?c.getBoundingClientRect().width+20:300}
 function railTo(i){rail.scrollTo({left:i*railStep(),behavior:reduce?'auto':'smooth'})}
-function railDots(){const i=clamp(Math.round(rail.scrollLeft/railStep()),0,IDEAS.length-1);$$('button',dots).forEach((b,k)=>b.setAttribute('aria-selected',k===i))}
-function railFit(){const c=rail.firstElementChild;if(!c)return;const pl=parseFloat(getComputedStyle(rail).paddingLeft)||0;rail.style.paddingRight=Math.max(pl,rail.clientWidth-c.getBoundingClientRect().width-pl)+'px';railEnds()}
+function railDots(){const atEnd=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2;const i=atEnd?IDEAS.length-1:clamp(Math.round(rail.scrollLeft/railStep()),0,IDEAS.length-1);$$('button',dots).forEach((b,k)=>b.setAttribute('aria-selected',k===i))}
+function railFit(){const c=rail.firstElementChild;if(!c)return;const pl=parseFloat(getComputedStyle(rail).paddingLeft)||0;rail.style.paddingRight=pl+'px';railEnds()}
 function railEnds(){const m=rail.scrollWidth-rail.clientWidth-2;$('#iPrev').disabled=rail.scrollLeft<=2;$('#iNext').disabled=rail.scrollLeft>=m}
 rail.addEventListener('scroll',()=>{railDots();railEnds()},{passive:true});addEventListener('resize',railFit,{passive:true});addEventListener('load',railFit);railFit();railDots();
 $('#iPrev').addEventListener('click',()=>rail.scrollBy({left:-railStep(),behavior:reduce?'auto':'smooth'}));
