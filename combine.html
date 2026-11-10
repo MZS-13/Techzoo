@@ -1801,6 +1801,17 @@ header.nav .menu-btn:active{transform:none}
 .nx .need:hover .cap p,.nx .need:focus-visible .cap p,.nx .need:focus-within .cap p{width:max-content;min-width:0;max-width:28ch}
 .nx .need:hover .cap .go,.nx .need:focus-visible .cap .go,.nx .need:focus-within .cap .go{width:max-content;min-width:0}
 @media (hover:none){.nx .need .cap{right:auto;width:max-content;max-width:calc(100% - 24px)}.nx .need .cap p{width:max-content;min-width:0;max-width:28ch}.nx .need .cap .go{width:max-content;min-width:0}}
+/* ideas: on wide screens all five cards sit in one centred row, no sideways scrolling */
+@media (min-width:1280px){
+  .nx .rail{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;overflow:visible;scroll-snap-type:none;cursor:default;margin:0;padding:4px 0 8px}
+  .nx .rail .idea{width:auto;height:auto;aspect-ratio:3/4.3}
+  .nx .idea .tx{bottom:104px}
+  .nx .idea .mp{flex-wrap:wrap;row-gap:8px}
+  .nx .idea .mp b{flex:1 1 0;min-width:0}
+  .nx .idea .mp .vd{flex:1;margin:0;text-align:center}
+  .nx .idea .mp button{flex:1}
+  .nx .car-ctl,.nx .dots{display:none}
+}
 </style>
 </head>
 <body>
