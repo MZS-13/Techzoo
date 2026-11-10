@@ -1795,6 +1795,13 @@ header.nav .menu-btn:active{transform:none}
 @media (max-width:1020px){header.nav .nav-in,header.nav.stuck .nav-in{max-width:none;height:60px}}
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
 .nx .need .cap{background:color-mix(in srgb,var(--surface) 52%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.45);box-shadow:0 12px 30px rgba(var(--shadow),.18),inset 0 1px 0 rgba(255,255,255,.5)}
+/* need cards: hidden text must not widen the collapsed card; expanded card hugs its text too */
+.nx .need .cap p{width:0;min-width:100%}
+.nx .need .cap .go{width:0;min-width:100%;white-space:nowrap}
+.nx .need:hover .cap,.nx .need:focus-visible .cap,.nx .need:focus-within .cap{right:auto;width:max-content;max-width:calc(100% - 24px)}
+.nx .need:hover .cap p,.nx .need:focus-visible .cap p,.nx .need:focus-within .cap p{width:max-content;min-width:0;max-width:28ch}
+.nx .need:hover .cap .go,.nx .need:focus-visible .cap .go,.nx .need:focus-within .cap .go{width:max-content;min-width:0}
+@media (hover:none){.nx .need .cap{right:auto;width:max-content;max-width:calc(100% - 24px)}.nx .need .cap p{width:max-content;min-width:0;max-width:28ch}.nx .need .cap .go{width:max-content;min-width:0}}
 </style>
 </head>
 <body>
