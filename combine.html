@@ -51,14 +51,10 @@
     product-adult-blue.jpg
     product-adult-bronze.jpg
     product-adult-gray.jpg
-    product-adult-light-pink.jpg
-    product-adult-light-purple.jpg
     product-adult-pink.jpg
     product-adult-rose-gold.jpg
-    product-adult-silver-birch.jpg
     product-adult-teal.jpg
     product-adult-warm-taupe.jpg
-    product-adult-white.jpg
     product-baby-black.jpg
     product-baby-ivory.jpg
     product-baby-light-blue.jpg
@@ -81,6 +77,10 @@
     wardrobe-color-teal.jpg
     wardrobe-color-warm-taupe.jpg
     wardrobe-color-white.jpg
+
+  COLOUR PHOTOS NOT WIRED (generated, failed image QA, regenerate; the ivory photo + Preview chip are shown instead, see PHOTO_OK in the script):
+    product-adult: black, blue, bronze, pink, rose-gold, teal, warm-taupe, gray (pale rectangular rim around the chrome caps; black also loses the pile texture)
+    wardrobe-color: all 12 colours (rectangular recolour block cut across the third hanger shoulder and the crossbar)
 
   PHOTOS TO REGENERATE (visible text or artefacts; hidden by CSS crops where possible):
     hero-closet.jpg           designer bag logos at the bottom right
@@ -648,7 +648,7 @@ html.js .sep:not(.in) i{transform:scaleX(0)}
 .color-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:center}
 .color-stage{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s2);box-shadow:0 36px 72px rgba(var(--shadow),.2),0 8px 20px rgba(var(--shadow),.1)}
 .cs-photo{position:relative;aspect-ratio:4/5;border-radius:var(--r)}
-.cl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.cl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0;transform:scale(1.04);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
 .cl.on{opacity:1;transform:none}
 .cs-note{padding:var(--s2) var(--s1) var(--s1);font-size:var(--t-xs);color:var(--muted);min-height:calc(1.5em + var(--s3));line-height:1.5}
 .color-copy h2{font-size:var(--t-3xl)}
@@ -1801,6 +1801,122 @@ header.nav .menu-btn:active{transform:none}
 .nx .need:hover .cap p,.nx .need:focus-visible .cap p,.nx .need:focus-within .cap p{width:max-content;min-width:0;max-width:28ch}
 .nx .need:hover .cap .go,.nx .need:focus-visible .cap .go,.nx .need:focus-within .cap .go{width:max-content;min-width:0}
 @media (hover:none){.nx .need .cap{right:auto;width:max-content;max-width:calc(100% - 24px)}.nx .need .cap p{width:max-content;min-width:0;max-width:28ch}.nx .need .cap .go{width:max-content;min-width:0}}
+
+/* =========================================================
+   A THIRTY-DAY HONEYMOON (pinned story). Same stage, clock, card and type as #morning.
+   ========================================================= */
+.nx.hmz{position:relative;height:280vh;height:280svh;padding-inline:0}
+.hmz .hm-h{margin:0 0 var(--s2);font-weight:400}
+.hmz .hm-k{display:block;margin-bottom:var(--s1);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.hmz .hm-big{display:block;max-width:16ch;font-family:var(--font-display);font-size:clamp(2rem,min(3.3vw,5.4svh),3.4rem);line-height:1.04;letter-spacing:-.02em;color:var(--text);text-wrap:balance}
+.hmz .hm-big em{font-style:italic;color:var(--accent-d);background:linear-gradient(currentColor,currentColor) 0 94%/100% 2px no-repeat;padding-bottom:.04em}
+.hmz .dclock{--u:clamp(52px,min(7.4vw,12svh),124px)}
+.hmz .dc-top{justify-content:space-between;gap:0}
+.hmz .dc-top i{width:2px;height:6px;border-radius:1px;background:#FFF4DC;opacity:.85;transition:opacity .3s linear}
+.hmz .dc-top i.off{opacity:.12}
+.hmz .dc-days{margin-top:calc(var(--u) * .22)}
+.hmz .dc-days li{transition:color .3s linear}
+.hmz .dc-days li.on{color:#FFE2B0}
+.hmz .dc-am{left:auto;right:0;top:calc(var(--u) * -.02);bottom:auto}
+.hmz .dc-cap{margin:var(--s2) 0 0}
+
+/* story line: masked rise, like #morning */
+.hmz .hm-lines{display:grid;margin-top:var(--s2)}
+.hmz .hm-lines p{grid-area:1/1;max-width:34ch;font-size:var(--t-lg);overflow:hidden;padding-bottom:.08em;margin:0}
+.hmz .hm-lines p>span{display:block;transform:translate3d(0,110%,0);opacity:0}
+.hmz .hm-lines p.on>span{transform:none;opacity:1;transition:transform .6s var(--ease-out),opacity .6s var(--ease-out)}
+.hmz .hm-lines p.out>span{transform:translate3d(0,-110%,0);opacity:0;transition:transform .6s var(--ease-out),opacity .6s var(--ease-out)}
+
+/* fact chips and the closing call to action */
+.hmz .hm-extra{display:grid;margin-top:var(--s3);min-height:48px}
+.hmz .hm-chips{grid-area:1/1;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;visibility:hidden;transition:visibility 0s .6s}
+.hmz .hm-chips.on{visibility:visible;transition-delay:0s}
+.hmz .hm-chip{display:inline-block;padding:9px 16px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--line);font-size:var(--t-sm);font-weight:500;line-height:1.2;color:var(--text);opacity:0;transform:translate3d(-18px,0,0);transition:transform .6s var(--ease-out),opacity .45s var(--ease-out)}
+.hmz .hm-chips.on .hm-chip{opacity:1;transform:none}
+.hmz .hm-chips.on .hm-chip:nth-child(2){transition-delay:.12s}
+.hmz .hm-cta{grid-area:1/1;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);visibility:hidden;opacity:0;transition:opacity .5s var(--ease-out),visibility 0s .5s}
+.hmz .hm-cta.on{visibility:visible;opacity:1;transition:opacity .7s var(--ease-out) .55s,visibility 0s .55s}
+.hmz .hm-cta .more{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-sm)}
+
+/* chapter dots (same dots as the other carousels) and skip */
+.hmz .hm-nav{display:flex;align-items:center;gap:var(--s2);margin-top:var(--s3)}
+.hmz .hm-nav ul{display:flex;gap:8px;margin:0;padding:0;list-style:none}
+.hmz .hm-dot{width:10px;height:10px;padding:0;border-radius:999px;background:var(--line);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 32%,transparent);position:relative;cursor:pointer;border:0;transition:width .5s var(--ease-out),background .3s}
+.hmz .hm-dot::before{content:'';position:absolute;inset:-14px -4px}
+.hmz .hm-dot[aria-current="step"]{width:34px;background:var(--text);box-shadow:none}
+.hmz .hm-skip{min-height:0;padding:0 0 2px;margin-left:auto;background:none;border:0;border-bottom:1px solid currentColor;cursor:pointer;font-family:inherit;color:var(--text)}
+
+/* photo card: the #morning card (2px accent border, radius, shadow, 4:3) */
+.hmz .hm-card{position:relative;aspect-ratio:4/3;max-height:calc(100vh - var(--nav-h) - 80px);width:100%;border-radius:var(--r-lg);overflow:hidden;border:2px solid color-mix(in srgb,var(--accent) 70%,var(--text) 30%);box-shadow:0 24px 48px rgba(var(--shadow),.18);background:var(--soft);isolation:isolate}
+.hmz .hm-ph{position:absolute;inset:0;opacity:0;clip-path:inset(0 0 0 14%);transition:opacity .5s var(--ease-out),clip-path .5s var(--ease-out);will-change:opacity,clip-path}
+.hmz .hm-ph.on{opacity:1;clip-path:inset(0);z-index:2}
+.hmz .hm-ph.prev{opacity:1;clip-path:inset(0);z-index:1;transition:none}
+.hmz .hm-ph>img,.hmz .hm-t>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hmz .hm-ph>img{transform:scale(1.04);transition:transform 1.3s var(--ease-out)}
+.hmz .hm-ph.on>img{transform:none}
+.hmz .hm-prev{position:absolute;left:10px;bottom:10px;z-index:4;background:rgba(255,252,245,.92);color:#2B231C;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;display:none}
+.hmz .hm-fb>.hm-prev{display:block}
+.hmz .hm-coll{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:8px;padding:8px;background:var(--surface)}
+.hmz .hm-t{position:relative;overflow:hidden;border-radius:16px;opacity:0;transform:translate3d(0,26px,0);transition:transform .6s var(--ease-out),opacity .6s var(--ease-out);background:var(--soft)}
+.hmz .hm-t:nth-child(1){grid-row:1/3}
+.hmz .hm-ph.on .hm-t{opacity:1;transform:none}
+.hmz .hm-ph.on .hm-t:nth-child(2){transition-delay:.14s}
+.hmz .hm-ph.on .hm-t:nth-child(3){transition-delay:.28s}
+.hmz .hm-t>img{transform:translate3d(0,var(--py,0px),0) scale(1.07);will-change:transform}
+.hmz .hm-t.hm-fb>.hm-prev{display:block;left:auto;right:10px}
+.hmz .hm-cap{position:absolute;left:10px;top:10px;z-index:3;padding:5px 12px;border-radius:var(--r-pill);background:var(--surface);color:var(--text);font-size:var(--t-xs);font-weight:600;line-height:1.2;border:1px solid var(--line)}
+.hmz .hm-light{position:absolute;inset:0;z-index:5;pointer-events:none}
+.hmz .hm-light i{position:absolute;inset:0;opacity:0;will-change:opacity}
+.hmz .hm-l1{background:linear-gradient(160deg,rgba(255,186,140,.26),rgba(255,186,140,0) 62%)}
+.hmz .hm-l2{background:linear-gradient(160deg,rgba(255,250,236,.14),rgba(255,250,236,0) 60%)}
+.hmz .hm-l3{background:linear-gradient(200deg,rgba(255,140,70,.22),rgba(255,140,70,0) 64%)}
+.hmz .hm-l4{background:var(--surface)}
+
+/* stacked version: reduced motion and short landscape screens */
+.hmz .hm-stack{display:none;padding:var(--s8) var(--gutter);max-width:900px;margin:0 auto}
+.hmz .hm-sc{margin-top:var(--s8)}
+.hmz .hm-sc .hm-card{margin-bottom:var(--s3)}
+.hmz .hm-sc .hm-ph{opacity:1;clip-path:none}
+.hmz .hm-sc .hm-ph>img{transform:none}
+.hmz .hm-sc .hm-t{opacity:1;transform:none}
+.hmz .hm-sc h3{margin:0}
+.hmz .hm-sc .dn{margin:0;font-family:var(--font-display);font-style:italic;font-size:var(--t-lg);color:var(--accent-d)}
+.hmz .hm-sc p.ln{margin:var(--s1) 0 var(--s2);font-size:var(--t-lg);max-width:36ch}
+.hmz .hm-sc .hm-chips{visibility:visible;display:flex}
+.hmz .hm-sc .hm-chip{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.nx.hmz{height:auto}.hmz .morn-stick{display:none}.hmz .hm-stack{display:block}.hmz *{transition:none!important;animation:none!important}}
+html.rm .nx.hmz{height:auto}html.rm .hmz .morn-stick{display:none}html.rm .hmz .hm-stack{display:block}
+@media (max-height:540px) and (orientation:landscape){.nx.hmz{height:auto}.hmz .morn-stick{display:none}.hmz .hm-stack{display:block}}
+
+/* phones: the card first, then clock and text, inside one screen */
+@media (max-width:860px){
+  .nx.hmz{height:230vh;height:230svh}
+  .hmz .morn-in>.sep{display:none}
+  .hmz .hm-card{order:1;aspect-ratio:4/3;max-height:none}
+  .hmz .mh{order:2}
+  .hmz .hm-k{display:none}
+  .hmz .hm-h{grid-column:1/-1;margin-bottom:var(--s1)}
+  .hmz .hm-big{max-width:none;font-size:clamp(1.35rem,6vw,1.8rem)}
+  .hmz .morn-stick{align-items:flex-start;padding-top:calc(var(--nav-h) + 12px)}
+  .hmz .dclock{--u:clamp(40px,min(13vw,7.4svh),72px)}
+  .hmz .mh{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center}
+  .hmz .mh>.dclock{margin:0}
+  .hmz .mh>.dc-cap{margin:0}
+  .hmz .mh>.hm-lines,.hmz .mh>.hm-extra,.hmz .mh>.hm-nav{grid-column:1/-1}
+  .hmz .hm-lines{margin-top:var(--s1)}
+  .hmz .hm-lines p{font-size:clamp(1rem,4.4vw,1.2rem)}
+  .hmz .hm-extra{margin-top:var(--s1);min-height:34px}
+  .hmz .hm-chip{padding:7px 13px;font-size:.8125rem}
+  .hmz .hm-nav{margin-top:var(--s1)}
+  .hmz .dc-days{display:none}
+  .hmz .dc-am{position:static;display:block;text-align:right;margin-top:6px}
+}
+@media (max-width:860px) and (max-height:700px){
+  .hmz .hm-h{display:none}
+  .hmz .dclock{--u:34px}
+  .hmz .hm-lines p{font-size:.95rem;line-height:1.3}
+  .hmz .hm-card{width:min(100%,calc((100svh - 330px) * 4 / 3))}
+}
 </style>
 </head>
 <body>
@@ -1991,16 +2107,6 @@ header.nav .menu-btn:active{transform:none}
   </div>
 </section>
 
-<!-- ============ 9. IDEAS RAIL ============ -->
-<section class="sec nx ideas" id="ideas" aria-labelledby="ideas-h">
-  <div class="wrap"><div class="sep rv" aria-hidden="true"><i></i><span class="sep-t">Ideas</span><i></i></div></div>
-  <div class="wrap">
-    <div class="sec-head"><h2 id="ideas-h">Made for <em>real closets.</em></h2>
-      <div class="car-ctl"><button id="iPrev" type="button" aria-label="Previous idea"><svg><use href="#nx-left"/></svg></button><button id="iNext" type="button" aria-label="Next idea"><svg><use href="#nx-right"/></svg></button></div></div>
-  </div>
-  <div class="wrap"><div class="car"><div class="rail" id="rail" tabindex="0" aria-label="Ideas, scroll sideways"></div><div class="dots" id="dots" role="tablist" aria-label="Choose an idea"></div></div></div>
-</section>
-
 <!-- ============ 10. THE COLLECTION ============ -->
 <section class="sec nx collection" id="shop" aria-labelledby="shop-h">
   <div class="wrap"><div class="sep rv" aria-hidden="true"><i></i><span class="sep-t">The Collection</span><i></i></div></div>
@@ -2076,32 +2182,26 @@ header.nav .menu-btn:active{transform:none}
   </div>
 </section>
 
-<!-- ============ 14. A MORNING IN A CALMER CLOSET (pinned) ============ -->
-<section class="nx morn" id="morning" aria-labelledby="morn-h">
+<!-- ============ 14b. A THIRTY-DAY HONEYMOON (pinned, days clock) ============ -->
+<section class="nx hmz" id="honeymoon" aria-labelledby="hm-h">
   <div class="morn-stick">
-    <div class="morn-sky" aria-hidden="true"><i class="ms-shaft sa"></i><i class="ms-shaft sb"></i><i class="ms-shaft sc"></i><i class="ms-patch"><span class="pn dawn"><b></b><b></b><b></b><b></b></span><span class="pn day"><b></b><b></b><b></b><b></b></span></i><i class="ms-bloom"></i></div>
     <div class="morn-in">
-      <div class="sep rv" aria-hidden="true"><i></i><span class="sep-t">A Calmer Morning</span><i></i></div>
+      <div class="sep rv" aria-hidden="true"><i></i><span class="sep-t">A Thirty-Day Honeymoon</span><i></i></div>
       <div class="mh">
-        <p class="label">A morning in a calmer closet</p>
-        <h2 id="morn-h" class="vh">A morning in a calmer closet</h2>
-        <div class="dclock" aria-hidden="true"><div class="dc-top"><i></i><i></i><i></i><i></i><i></i></div><div class="dc-face"><div class="dc-main"><div class="dc-digits" id="dcDigits"><b class="dg"><i class="s-a"></i><i class="s-b"></i><i class="s-c"></i><i class="s-d"></i><i class="s-e"></i><i class="s-f"></i><i class="s-g"></i></b><b class="dg"><i class="s-a"></i><i class="s-b"></i><i class="s-c"></i><i class="s-d"></i><i class="s-e"></i><i class="s-f"></i><i class="s-g"></i></b><span class="dc-colon"><i></i><i></i></span><b class="dg"><i class="s-a"></i><i class="s-b"></i><i class="s-c"></i><i class="s-d"></i><i class="s-e"></i><i class="s-f"></i><i class="s-g"></i></b><b class="dg"><i class="s-a"></i><i class="s-b"></i><i class="s-c"></i><i class="s-d"></i><i class="s-e"></i><i class="s-f"></i><i class="s-g"></i></b></div><ul class="dc-days" id="dcDays"><li>MON</li><li>TUE</li><li>WED</li><li>THU</li><li>FRI</li><li>SAT</li><li>SUN</li></ul></div><span class="dc-bell b1">&#9200;</span><span class="dc-bell b2">&#9200;</span><span class="dc-am" id="dcAm">AM</span></div><div class="dc-base"></div></div><p class="dc-cap" id="dcCap" aria-hidden="true">First light</p>
-        <div class="mlines" id="mlines" aria-live="polite">
-          <p class="on"><span class="ln"><span>Alarm off. Every shirt is where you left it.</span></span></p>
-          <p><span class="ln"><span>The silk blouse goes on without a snag. Nothing on the floor.</span></span></p>
-          <p><span class="ln"><span>A heavy coat comes off one slim hanger. The rod still has room.</span></span></p>
-          <p><span class="ln"><span>Out the door. The closet still looks the way you hung it.</span></span></p>
-        </div>
+        <h2 id="hm-h" class="hm-h"><span class="hm-k">A thirty-day honeymoon, and</span><span class="hm-big">the <em>hangers</em> that came along</span></h2>
+        <div class="dclock" aria-hidden="true"><div class="dc-top" id="hmTicks"></div><div class="dc-face"><div class="dc-main"><div class="dc-digits" id="hmDigits"></div><ul class="dc-days" id="hmLabels"></ul></div><span class="dc-am" id="hmAm">DAYS</span></div><div class="dc-base"></div></div>
+        <p class="dc-cap" id="hmCap" aria-hidden="true">Planning</p>
+        <p class="vh" id="hmSr">Day 30 of 30</p>
+        <div class="hm-lines" id="hmLines" aria-live="polite"></div>
+        <div class="hm-extra" id="hmExtra"></div>
+        <div class="hm-nav"><ul id="hmDots" aria-label="Story chapters"></ul><button type="button" class="link hm-skip" id="hmSkip">Skip story</button></div>
       </div>
-      <div class="mphotos" id="mphotos">
-        <img class="on" src="assets/images/morning-1.jpg" data-fallback="hero-closet-mobile.jpg|after-closet.jpg" alt="A calm wardrobe with neatly hung clothes in morning light" width="1264" height="848" loading="lazy" decoding="async" onerror="imgFail(this)">
-        <img src="assets/images/morning-2.jpg" data-fallback="problem-slip.jpg|detail-velvet-texture.jpg" alt="A silk top on a hanger, ready to wear" width="1264" height="848" loading="lazy" decoding="async" onerror="imgFail(this)">
-        <img src="assets/images/morning-3.jpg" data-fallback="lifestyle-entryway-coats.jpg" alt="Coats hanging on a rail by the front door" width="1264" height="848" loading="lazy" decoding="async" onerror="imgFail(this)">
-        <img src="assets/images/morning-4.jpg" data-fallback="after-closet.jpg|wardrobe-color-ivory.jpg" alt="A tidy closet with evenly spaced hangers" width="1264" height="848" loading="lazy" decoding="async" onerror="imgFail(this)">
-      </div>
+      <div class="hm-card" id="hmCard"><div class="hm-light" aria-hidden="true"><i class="hm-l1"></i><i class="hm-l2"></i><i class="hm-l3"></i><i class="hm-l4"></i></div></div>
     </div>
   </div>
+  <div class="hm-stack" id="hmStack"></div>
 </section>
+
 
 <!-- ============ 15. STORY AND PROMISE ============ -->
 <section class="nx nstory" id="story" aria-labelledby="story-h">
@@ -2131,7 +2231,7 @@ header.nav .menu-btn:active{transform:none}
 <footer class="foot" id="footer">
   <div class="wrap foot-top">
     <div class="ft-copy"><p class="ft-kick">Ready when you are</p><h2 id="cta-h">Give your closet a <em>new personality.</em></h2><p class="ft-sub">Soft to the touch, strong where it counts, and ready to ship free over $50.</p>
-      <div class="ft-shop"><a class="btn" href="#shop" data-store="adult">Shop Adult <svg class="ico"><use href="#i-arrow"/></svg></a><a class="btn ghost" href="#little" data-store="kids">Shop Kids</a><a class="btn ghost" href="#little" data-store="baby">Shop Baby</a></div></div>
+      <div class="ft-shop"><a class="btn" href="product.html?p=adult">Shop Adult <svg class="ico"><use href="#i-arrow"/></svg></a><a class="btn ghost" href="product.html?p=kids">Shop Kids</a><a class="btn ghost" href="product.html?p=baby">Shop Baby</a></div></div>
     <form class="ft-form" id="fNews" novalidate>
       <label class="ft-lab" for="fEmail">Get closet ideas by email</label>
       <div class="ft-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><input id="fEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="fMsg"><button type="submit">Sign me up <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
@@ -2146,9 +2246,9 @@ header.nav .menu-btn:active{transform:none}
         <li><a id="sFb" style="--b:#1877F2" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.2-1.2 1.3-1.2H17V3.1C16.6 3 15.6 3 14.6 3 12.2 3 10.6 4.4 10.6 7v1.5H8v3h2.6V21H14v-9.5h2.6l.4-3z" fill="currentColor"/></svg><span>Facebook</span></a></li><li><a id="sIg" style="--b:#E4405F" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect class="ig" x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="12" cy="12" r="4" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="17.2" cy="6.8" r="1.25" fill="url(#igG)"/></svg><span>Instagram</span></a></li><li><a id="sPin" style="--b:#E60023" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.5 8.5 0 0 0-3.1 16.4c-.1-.7-.1-1.7 0-2.4l1-4.2s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.2 0 .8-.5 1.9-.7 3-.2.9.5 1.6 1.4 1.6 1.7 0 3-1.8 3-4.3 0-2.3-1.6-3.9-4-3.9-2.7 0-4.3 2-4.3 4.1 0 .8.3 1.7.7 2.2.1.1.1.2.1.3l-.3 1.1c0 .2-.1.2-.3.1-1.2-.5-2-2.3-2-3.7 0-3 2.2-5.8 6.3-5.8 3.3 0 5.9 2.4 5.9 5.5 0 3.3-2.1 6-5 6-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.8 1.9-1.2 2.5A8.5 8.5 0 1 0 12 3z" fill="currentColor"/></svg><span>Pinterest</span></a></li>
       </ul>
     </div>
-    <nav aria-label="Shop"><h3>Shop</h3><ul><li><a data-store="adult" href="#">Adult hangers</a></li><li><a data-store="kids" href="#">Kids hangers</a></li><li><a data-store="baby" href="#">Baby hangers</a></li><li><a data-store="all" href="#">Shop all</a></li></ul></nav>
-    <nav aria-label="Company"><h3>Company</h3><ul><li><a data-page="about" href="#">About us</a></li><li><a data-page="contact" href="#">Contact</a></li><li><a data-page="blog" href="#">Blog</a></li></ul></nav>
-    <nav aria-label="Policies"><h3>Policies</h3><ul><li><a data-page="warranty" href="#">Warranty policy</a></li><li><a data-page="terms" href="#">Terms &amp; conditions</a></li><li><a data-page="privacy" href="#">Privacy policy</a></li></ul></nav>
+    <nav aria-label="Shop"><h3>Shop</h3><ul><li><a href="product.html?p=adult">Adult hangers</a></li><li><a href="product.html?p=kids">Kids hangers</a></li><li><a href="product.html?p=baby">Baby hangers</a></li><li><a href="#shop">Shop all</a></li></ul></nav>
+    <nav aria-label="Pages"><h3>Pages</h3><ul><li><a href="combine.html">Home</a></li><li><a href="adult-collection.html">Adult collection</a></li><li><a href="kids-collection.html">Kids collection</a></li><li><a href="baby-collection.html">Baby collection</a></li><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact</a></li><li><a data-page="blog" href="#">Blog</a></li></ul></nav>
+    <nav aria-label="Policies"><h3>Policies</h3><ul><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="warranty-policy.html">Warranty policy</a></li><li><a href="terms-conditions.html">Terms &amp; conditions</a></li><li><a href="shipping-delivery.html">Shipping &amp; delivery</a></li><li><a href="return-exchange.html">Return &amp; exchange</a></li></ul></nav>
   </div>
   <div class="wrap foot-base">
     <ul class="pay" id="pay" aria-label="Accepted payment methods"></ul>
@@ -2194,6 +2294,10 @@ header.nav .menu-btn:active{transform:none}
    Verified items came from the live homepage. Anything marked TODO is
    not yet verified and must NOT be paraphrased as fact.
    ========================================================= */
+/* colour photos that passed image QA. Any other product-adult-<id>.jpg / wardrobe-color-<id>.jpg is NOT requested: the ivory photo and the Preview chip are used instead.
+   Add an id here only after its file has been checked (see header comment). */
+const PHOTO_OK={'product-adult':['ivory','white','light-pink','light-purple','silver-birch'],'wardrobe-color':['ivory']};
+const photoOk=(pre,id)=>(PHOTO_OK[pre]||[]).indexOf(id)>-1;
 const STORE_DATA = {
   base: "https://techzoostore.com",
   logo: "https://techzoostore.com/cdn/shop/files/Techzoo_Logo_1.png",
@@ -2446,13 +2550,14 @@ function onProgress(el,cb){
 /* crossfade a new photo over the current one inside box; the fallback chain always ends on a real photo */
 function crossfade(box,src,fb,alt,cls,cb){
   const img=document.createElement('img');
-  img.className=cls;img.alt=alt;img.decoding='async';img.loading='lazy';
+  img.className=cls;img.alt=alt;img.decoding='async';img.loading=box.querySelector('.'+cls)?'lazy':'eager';
   if(fb)img.setAttribute('data-fallback',fb);
   img.onerror=function(){imgFail(this)};
   img.addEventListener('load',()=>{
-    requestAnimationFrame(()=>{img.classList.add('on');
+    /* decode first, so the fade never starts on a half-painted image */
+    (img.decode?img.decode().catch(()=>{}):Promise.resolve()).then(()=>requestAnimationFrame(()=>{img.classList.add('on');
       $$('.'+cls+'.on',box).forEach(o=>{if(o!==img){o.classList.remove('on');setTimeout(()=>o.remove(),700)}});
-      cb&&cb(img)});
+      cb&&cb(img)}));
   },{once:true});
   img.src=src;box.appendChild(img);return img;
 }
@@ -2579,8 +2684,11 @@ function crossfade(box,src,fb,alt,cls,cb){
   function pick(id,first){
     const c=p.colors.find(x=>x.id===id);
     $$('.cs',row).forEach(b=>b.setAttribute('aria-checked',b.dataset.c===id));
-    crossfade(box,'assets/images/product-adult-'+c.id+'.jpg','product-adult-ivory.jpg|detail-velvet-texture.jpg','Techzoo adult velvet hanger in '+c.name,'cl',img=>{
-      note.textContent=img.currentSrc.indexOf('product-adult-'+c.id)>-1?'':'Photo preview while '+c.name+' is photographed. The shop link opens '+c.name+'.'});
+    const real=photoOk('product-adult',c.id);
+    crossfade(box,'assets/images/product-adult-'+(real?c.id:'ivory')+'.jpg','product-adult-ivory.jpg|detail-velvet-texture.jpg','Techzoo adult velvet hanger in '+c.name,'cl',img=>{
+      note.textContent=real?'':'Photo preview while '+c.name+' is photographed. The shop link opens '+c.name+'.'});
+    const at=p.colors.findIndex(x=>x.id===id);
+    [-1,1].forEach(d=>{const n=p.colors[(at+d+p.colors.length)%p.colors.length];if(photoOk('product-adult',n.id)){const pi=new Image();pi.decoding='async';pi.src='assets/images/product-adult-'+n.id+'.jpg'}});
     $('#cName').textContent=c.name;$('#colorBuyName').textContent=c.name;
     $('#colorBuy').href=storeUrl(p.url,c.variant);
     $('#pairs').innerHTML='<span class="pairs-lab">Pairs well with</span>'+PAIR[id].map((x,i)=>{
@@ -2788,7 +2896,7 @@ function addToCart(p,c,q,from){
 const PK=['adult','kids','baby'];
 const prodState={adult:0,kids:0,baby:0};
 const cardImg=(p,c)=>({
-  adult:{list:['product-adult-'+c[1]+'.jpg','product-adult-ivory.jpg'],crop:{k:1.05,ox:'45%',oy:'50%'}},
+  adult:{list:(photoOk('product-adult',c[1])?['product-adult-'+c[1]+'.jpg']:[]).concat(['product-adult-ivory.jpg']),crop:{k:1.05,ox:'45%',oy:'50%'}},
   kids:{list:['product-kids-'+c[1]+'.jpg','lifestyle-kids-room.jpg'],crop:{k:1.7,ox:'62%',oy:'42%'}},
   baby:{list:['product-baby-'+c[1]+'.jpg','lifestyle-kids-room.jpg'],crop:{k:1.7,ox:'22%',oy:'42%'}}
 }[p]);
@@ -2816,54 +2924,12 @@ NEEDS.forEach((n,i)=>{
 
 /* ---------- ideas rail ---------- */
 /* ================= ideas rail ================= */
-const IDEAS=[
- {t:'Silk blouses',s:'Velvet grips the fabric, so nothing slips off the shoulder.',p:'adult',c:6,img:['idea-blouses.jpg','wardrobe-color-ivory.jpg'],crop:{k:1.5,ox:'88%',oy:'60%'}},
- {t:'Winter coats',s:'Each hanger holds up to 10 lbs.',p:'adult',c:1,img:['idea-coats.jpg','lifestyle-entryway-coats.jpg'],crop:{k:1.4,ox:'42%',oy:'28%'}},
- {t:'Capsule wardrobe',s:'One colour, one slim shape, a calm rail.',p:'adult',c:0,img:['idea-capsule.jpg','lifestyle-bedroom.jpg'],crop:{k:1.8,ox:'42%',oy:'38%'}},
- {t:'Nursery',s:'Newborn-size hangers for tiny sleeves.',p:'baby',c:0,img:['idea-nursery.jpg','lifestyle-kids-room.jpg'],crop:{k:1.7,ox:'22%',oy:'42%'}},
- {t:"Kids' room",s:'14 in hangers that fit small garments.',p:'kids',c:4,img:['idea-kidsroom.jpg','lifestyle-kids-room.jpg'],crop:{k:1.7,ox:'62%',oy:'42%'}}
-];
-const rail=$('#rail'),dots=$('#dots');
-IDEAS.forEach((d,i)=>{
-  const card=E('article','idea fr');card.appendChild(img(d.img,'',{crop:d.crop}));
-  card.insertAdjacentHTML('beforeend','<div class="scrim"></div><div class="tx"><h3>'+d.t+'</h3><p>'+d.s+'</p></div>');
-  const mp=E('div','mp');const mf=E('span','fr');const ci2=cardImg(d.p,SD.colours[d.p][d.c]);mf.appendChild(img(ci2.list,'',{crop:ci2.crop}));
-  mp.append(mf);mp.insertAdjacentHTML('beforeend','<b>'+SD.products[d.p].name+'<br><span style="font-weight:400;color:var(--muted)">'+SD.colours[d.p][d.c][0]+', '+fmtC(SD.price)+'</span></b>');
-  const ab=E('button','','Add');ab.type='button';ab.addEventListener('click',()=>addToCart(d.p,d.c,1,mf));const ad=E('a','vd','Details');ad.href=pdp(d.p,d.c);ad.setAttribute('aria-label','View details: '+SD.products[d.p].name+', '+SD.colours[d.p][d.c][0]);mp.append(ad,ab);card.append(mp);rail.appendChild(card);
-  const dt=E('button');dt.type='button';dt.setAttribute('role','tab');dt.setAttribute('aria-label','Idea '+(i+1));dt.addEventListener('click',()=>railTo(i));dots.appendChild(dt);
-});
 /* lifestyle gallery: same add-to-cart pill as the Ideas cards */
 (function(){const LS=[['adult',0],['adult',6],['baby',0],['kids',4],['adult',1]];
 $$('#gal .g-item').forEach((it,i)=>{const L=LS[i];if(!L)return;const p=L[0],c=L[1];
   const mp=E('div','mp');const mf=E('span','fr');const ci2=cardImg(p,SD.colours[p][c]);mf.appendChild(img(ci2.list,'',{crop:ci2.crop}));
   mp.append(mf);mp.insertAdjacentHTML('beforeend','<b>'+SD.products[p].name+'<br><span style="font-weight:400;color:var(--muted)">'+SD.colours[p][c][0]+', '+fmtC(SD.price)+'</span></b>');
   const ab=E('button','','Add');ab.type='button';ab.addEventListener('click',()=>addToCart(p,c,1,mf));const ad=E('a','vd','Details');ad.href=pdp(p,c);ad.setAttribute('aria-label','View details: '+SD.products[p].name+', '+SD.colours[p][c][0]);mp.append(ad,ab);it.appendChild(mp)})})();
-function railStep(){const c=rail.firstElementChild;return c?c.getBoundingClientRect().width+20:300}
-function railTo(i){rail.scrollTo({left:i*railStep(),behavior:reduce?'auto':'smooth'})}
-function railDots(){const atEnd=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2;const i=atEnd?IDEAS.length-1:clamp(Math.round(rail.scrollLeft/railStep()),0,IDEAS.length-1);$$('button',dots).forEach((b,k)=>b.setAttribute('aria-selected',k===i))}
-function railFit(){const c=rail.firstElementChild;if(!c)return;const pl=parseFloat(getComputedStyle(rail).paddingLeft)||0;rail.style.paddingRight=pl+'px';railEnds()}
-function railEnds(){const m=rail.scrollWidth-rail.clientWidth-2;$('#iPrev').disabled=rail.scrollLeft<=2;$('#iNext').disabled=rail.scrollLeft>=m}
-rail.addEventListener('scroll',()=>{railDots();railEnds()},{passive:true});addEventListener('resize',railFit,{passive:true});addEventListener('load',railFit);railFit();railDots();
-$('#iPrev').addEventListener('click',()=>rail.scrollBy({left:-railStep(),behavior:reduce?'auto':'smooth'}));
-$('#iNext').addEventListener('click',()=>rail.scrollBy({left:railStep(),behavior:reduce?'auto':'smooth'}));
-/* autoplay: one card every 1.5 s, wraps to the start, pauses on hover, focus, touch, hidden tab or off-screen */
-(function(){if(reduce)return;let t=null,hold=false,vis=false;
-function tick(){if(hold||!vis||document.hidden)return;const m=rail.scrollWidth-rail.clientWidth-2;if(rail.scrollLeft>=m)rail.scrollTo({left:0,behavior:'smooth'});else rail.scrollBy({left:railStep(),behavior:'smooth'})}
-function start(){if(!t)t=setInterval(tick,1500)}
-const sec=rail.closest('section')||rail;new IntersectionObserver(e=>{vis=e[0].isIntersecting},{threshold:.25}).observe(sec);
-['mouseenter','focusin','touchstart','pointerdown'].forEach(ev=>sec.addEventListener(ev,()=>{hold=true},{passive:true}));
-['mouseleave','focusout'].forEach(ev=>sec.addEventListener(ev,()=>{hold=false}));
-sec.addEventListener('touchend',()=>setTimeout(()=>{hold=false},4000),{passive:true});
-start()})();
-rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();rail.scrollBy({left:railStep(),behavior:'smooth'})}if(e.key==='ArrowLeft'){e.preventDefault();rail.scrollBy({left:-railStep(),behavior:'smooth'})}});
-(function drag(){
-  let down=false,sx=0,sl=0,v=0,last=0,lt=0,moved=false,id=null;
-  rail.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.target.closest('button'))return;down=true;moved=false;sx=e.clientX;sl=rail.scrollLeft;last=sx;lt=performance.now();v=0});
-  addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4&&!moved){moved=true;rail.classList.add('drag')}if(!moved)return;rail.scrollLeft=sl-dx;const n=performance.now();v=(last-e.clientX)/Math.max(1,n-lt);last=e.clientX;lt=n});
-  addEventListener('pointerup',()=>{if(!down)return;down=false;if(!moved)return;let vel=v*16;cancelAnimationFrame(id);(function f(){rail.scrollLeft+=vel;vel*=.94;if(Math.abs(vel)>.5)id=requestAnimationFrame(f);else{rail.classList.remove('drag');rail.scrollTo({left:Math.round(rail.scrollLeft/railStep())*railStep(),behavior:'smooth'})}})()});
-})();
-
-
 /* ---------- collection and find-your-fit ---------- */
 /* ================= collection ================= */
 const grid=$('#grid');let filt='all';
@@ -2884,6 +2950,7 @@ function buildCard(p,idx){
     const old=imgEl;imgEl=img(ci2.list,P.name+' in '+c[0],{w:896,h:1200,crop:ci2.crop,lazy:idx>0});
     imgEl.style.zIndex=1;im.insertBefore(imgEl,im.querySelector('.badge'));
     im.classList.remove('is-prev');
+    if(p==='adult'&&!photoOk('product-adult',c[1]))im.classList.add('is-prev');
     imgEl.addEventListener('load',()=>{if(old)setTimeout(()=>old.remove(),650)},{once:true});
     imgEl.addEventListener('error',()=>{if(old)setTimeout(()=>old.remove(),650)},{once:true});
     $$('button',sw).forEach((b,k)=>b.setAttribute('aria-pressed',k===i));swn.textContent=c[0];
@@ -2970,10 +3037,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#dlg').classList
   const ph=$('#cphoto'),nm=$('#cname'),md=$('#cmood'),nt=$('#cnote'),add=$('#cAdd'),lk=$('#cLink'),tg=$('#ctags');
   tg.innerHTML=list.map((c,k)=>'<button type="button" class="ctag" role="radio" aria-checked="false" aria-label="'+c.name+'" tabindex="-1" data-i="'+k+'" style="--c:'+c.hex+'"></button>').join('');
   const bs=$$('.ctag',tg);let cur=-1,busy=false;
-  const src=c=>'assets/images/wardrobe-color-'+c.id+'.jpg';
+  const src=c=>'assets/images/wardrobe-color-'+(photoOk('wardrobe-color',c.id)?c.id:'ivory')+'.jpg';
   const FBK='wardrobe-color-ivory.jpg|product-adult-ivory.jpg';
   function img(c,on){const i=new Image();i.className='fx';i.alt=c.name+' velvet hangers on a rail';i.width=1600;i.height=1067;i.decoding='async';i.setAttribute('data-fallback',FBK);i.onerror=function(){imgFail(this)};i.src=src(c);fx(i);return i}
-  function pre(k){[k-1,k+1].forEach(n=>{const c=list[(n+list.length)%list.length];const i=new Image();i.src=src(c)})}
+  function pre(k){[k-1,k+1].forEach(n=>{const c=list[(n+list.length)%list.length];if(!photoOk('wardrobe-color',c.id))return;const i=new Image();i.decoding='async';i.src=src(c)})}
   async function show(k,first){
     k=(k+list.length)%list.length;if(k===cur)return;const c=list[k];cur=k;
     bs.forEach((b,n)=>{b.setAttribute('aria-checked',n===k);b.tabIndex=n===k?0:-1});
@@ -2984,8 +3051,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#dlg').classList
     };
     if(first||RM){upd();nm.classList.remove('out');md.classList.remove('out')}
     else{nm.classList.add('out');md.classList.add('out');await wait(280);upd();nm.classList.remove('out');md.classList.remove('out')}
-    i.addEventListener('load',()=>{nt.textContent=i.currentSrc.indexOf('wardrobe-color-'+c.id)>-1?'':'Photo preview. The '+c.name+' wardrobe photo is on its way, so the ivory photo is shown.'},{once:true});
-    if(i.complete&&i.naturalWidth)nt.textContent=i.currentSrc.indexOf('wardrobe-color-'+c.id)>-1?'':'Photo preview. The '+c.name+' wardrobe photo is on its way, so the ivory photo is shown.';
+    i.addEventListener('load',()=>{nt.textContent=photoOk('wardrobe-color',c.id)?'':'Photo preview. The '+c.name+' wardrobe photo is on its way, so the ivory photo is shown.'},{once:true});
+    if(i.complete&&i.naturalWidth)nt.textContent=photoOk('wardrobe-color',c.id)?'':'Photo preview. The '+c.name+' wardrobe photo is on its way, so the ivory photo is shown.';
     pre(k);
   }
   tg.addEventListener('click',e=>{const b=e.target.closest('.ctag');if(b)show(+b.dataset.i)});
@@ -3026,37 +3093,162 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#dlg').classList
 })();
 
 
-/* ---------- a morning in a calmer closet ---------- */
-/* ---------- a morning in a calmer closet ---------- */
-(function morning(){
-  const sec=$('#morning'),ps=$$('#mlines p'),ims=$$('#mphotos img'),stick=$('.morn-stick',sec);let idx=-1,lastT='';
-  const dgs=$$('#dcDigits .dg'),cap=$('#dcCap'),am=$('#dcAm'),sky=$('.morn-sky',sec);
-  const patch=$('.ms-patch',sky),pDawn=$('.pn.dawn',sky),pDay=$('.pn.day',sky),bloom=$('.ms-bloom',sky),sh=$$('.ms-shaft',sky);
-  const SEG={0:'abcdef',1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg',7:'abc',8:'abcdefg',9:'abcdfg'};
-  const show=(el,n)=>{const on=SEG[n];$$('i',el).forEach(i=>i.classList.toggle('on',on.indexOf(i.className.replace(/\bon\b/,'').trim().slice(2))>-1))};
-  const dd=new Date().getDay();$$('#dcDays li').forEach((li,k)=>li.classList.toggle('on',k===(dd+6)%7));
-  function clock(h,m){const t=String(h).padStart(2,'0')+String(m).padStart(2,'0');if(t===lastT)return;lastT=t;[...t].forEach((c,k)=>show(dgs[k],+c));am.textContent=h<12?'AM':'PM'}
-  /* low sun: a long, shallow patch far across the room; higher sun: a shorter, steeper patch nearer the wall */
-  function sun(p){
-    const W=stick.clientWidth,H=stick.clientHeight,e=p*p*(3-2*p);
-    const ox=W*(-.06+.12*e),oy=H*(-.12+.04*e);                 /* window corner, upper left */
-    const px=W*(.04+.46*e),py=H*(.16+.34*e);                    /* where the patch lands */
-    const skew=-34+20*e,sx=1.55-.6*e,sy=.82+.3*e;
-    patch.style.transform='translate3d('+px+'px,'+py+'px,0) skewX('+skew.toFixed(1)+'deg) scale('+sx.toFixed(3)+','+sy.toFixed(3)+')';
-    const w=Math.min(1,Math.max(0,(p-.1)/.55));pDawn.style.opacity=(1-w).toFixed(3);pDay.style.opacity=w.toFixed(3);
-    patch.style.opacity=(.55+.35*Math.sin(Math.PI*Math.min(1,p*1.1))).toFixed(3);
-    bloom.style.transform='translate3d('+ox+'px,'+oy+'px,0)';bloom.style.opacity=(.5+.5*w).toFixed(3);
-    const tx=px+W*.14,ty=py+H*.3,a=Math.atan2(ty-oy,tx-ox)*180/Math.PI;
-    [-10,0,9].forEach((d,k)=>{sh[k].style.transform='translate3d('+ox+'px,'+oy+'px,0) rotate('+(a+d).toFixed(1)+'deg)'});
-  }
-  if(RM){clock(7,10);cap.textContent='Full morning';sun(.6);return}
-  clock(6,30);sun(0);
-  track(sec,p=>{
-    const tot=6*60+30+Math.round(p*60),h=Math.floor(tot/60),m=tot%60;clock(h,m);sun(p);
-    const c=p<.3?'First light':p<.65?'Golden hour':'Full morning';if(cap.textContent!==c)cap.textContent=c;
-    const n=Math.min(3,Math.floor(p*4));
-    if(n!==idx){ps.forEach((x,k)=>x.classList.toggle('on',k===n));ims.forEach((x,k)=>{if(k===n){x.classList.remove('prev');x.classList.add('on')}else if(x.classList.contains('on')){x.classList.remove('on');x.classList.add('prev');setTimeout(()=>x.classList.remove('prev'),700)}else x.classList.remove('prev')});idx=n}
+/* ---------- a thirty-day honeymoon (pinned story, days clock) ---------- */
+(function(){
+'use strict';
+var IMG='assets/images/';
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var clamp=function(v,a,b){return Math.min(b,Math.max(a,v))};
+var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* the story: the content is fixed */
+var CH=[
+ {k:'Plan',name:'Planning',day:30,from:0,line:'A month to go. The wardrobe is open and the choosing begins.',chips:['Slim velvet, one rail'],
+  ph:[{f:'honeymoon-1-plan.jpg',fb:'lifestyle-bedroom.jpg|hero-closet-mobile.jpg',alt:'A couple stand at an open wardrobe, holding a dress on a slim hanger while shirts hang on the rail behind'}]},
+ {k:'Pack',name:'Packing',day:26,from:.18,line:'Some favourites stay on their Techzoo hangers. The rest are lifted off, hangers and all, and packed to travel together.',chips:['75 g, easy to pack'],
+  ph:[{f:'honeymoon-2-pack.jpg',fb:'hero-story-2.jpg|lifestyle-bedroom.jpg',alt:'A couple laugh together on the floor behind garment bags, linen shirts and slim hangers lined up ready to pack'}]},
+ {k:'Roam',name:'On the road',day:20,from:.40,line:'In a tent, in a hotel wardrobe, on a car’s grab handle: the same hangers, holding the same clothes.',chips:['Holds up to 10 lbs','Non-slip velvet'],
+  ph:[{f:'honeymoon-3-camp.jpg',fb:'lifestyle-bedroom.jpg',alt:'A couple sit close on a bed in a safari tent, a pink linen shirt and a green jacket hanging on a brass rail beside them',cap:'Camping'},
+      {f:'honeymoon-4-hotel.jpg',fb:'after-closet.jpg|hero-closet-mobile.jpg',alt:'A hotel wardrobe with clothes on hangers',cap:'Hotel'},
+      {f:'honeymoon-5-road.jpg',fb:'lifestyle-entryway-coats.jpg|hero-story-2.jpg',alt:'A garment hanging from a car grab handle on the road',cap:'On the road'}]},
+ {k:'Home',name:'Home',day:6,from:.78,line:'Day thirty. They open the wardrobe. Everything they left behind is exactly where they left it.',chips:['Non-slip velvet grip'],
+  ph:[{f:'honeymoon-6-home.jpg',fb:'after-closet.jpg|hero-closet-mobile.jpg',alt:'A wardrobe at home with everything on its hangers, just as it was left'}]},
+ {k:'Always',name:'Always',day:0,from:.92,line:'A grip that held for a month. A small companion for a long life.',chips:[],cta:true,
+  ph:[{f:'honeymoon-7-always.jpg',fb:'cta-final.jpg|after-closet.jpg',alt:'Techzoo hangers in a calm, tidy closet'}]}
+];
+var ANCH=[[0,30],[.18,26],[.40,20],[.78,6],[.92,0],[1,0]];
+function daysAt(p){for(var i=1;i<ANCH.length;i++){if(p<=ANCH[i][0]){var a=ANCH[i-1],b=ANCH[i],t=(p-a[0])/(b[0]-a[0]);return Math.round(a[1]+(b[1]-a[1])*t)}}return 0}
+function chAt(p){return p<.18?0:p<.40?1:p<.78?2:p<.92?3:4}
+
+/* images: fallback chain, "Preview photo" chip when a real file is missing */
+function mkImg(ph,eager,host){
+  var im=new Image(),list=ph.fb.split('|'),n=0;
+  im.width=1200;im.height=896;im.alt=ph.alt;im.decoding='async';
+  if(!eager)im.loading='lazy';else im.fetchPriority='high';
+  im.addEventListener('error',function(){
+    host.classList.add('hm-fb');
+    if(n<list.length){im.src=IMG+list[n++];return}
+    im.removeAttribute('alt');im.alt='';
   });
+  im.src=IMG+ph.f;return im;
+}
+var chip=function(){var s=document.createElement('span');s.className='hm-prev';s.textContent='Preview photo';return s};
+function mkLayer(c,eager){
+  var d=document.createElement('div');d.className='hm-ph';
+  if(c.ph.length===1){d.appendChild(mkImg(c.ph[0],eager,d));d.appendChild(chip())}
+  else{
+    d.className+=' hm-coll';
+    c.ph.forEach(function(p,i){
+      var t=document.createElement('div');t.className='hm-t';
+      var cap=document.createElement('span');cap.className='hm-cap';cap.textContent=p.cap;
+      t.appendChild(mkImg(p,false,t));t.appendChild(cap);t.appendChild(chip());d.appendChild(t);
+    });
+  }
+  return d;
+}
+function mkChips(c,cls){
+  var d=document.createElement('div');d.className=cls||'hm-chips';
+  c.chips.forEach(function(t){var s=document.createElement('span');s.className='hm-chip';s.textContent=t;d.appendChild(s)});
+  return d;
+}
+function mkCta(){
+  var d=document.createElement('div');d.className='hm-cta';
+  d.innerHTML='<a class="btn" href="adult-collection.html">Shop adult hangers</a><span class="more"><a class="link" href="kids-collection.html">Shop kids</a><span>and</span><a class="link" href="baby-collection.html">baby</a></span>';
+  return d;
+}
+
+/* ---- build the clock, lines, chips, dots, layers ---- */
+var card=$('#hmCard'),ticks=$('#hmTicks'),digits=$('#hmDigits'),labels=$('#hmLabels'),cap=$('#hmCap'),sr=$('#hmSr'),am=$('#hmAm');
+var linesEl=$('#hmLines'),extra=$('#hmExtra'),dots=$('#hmDots');
+var SEGS='abcdefg',SEG={0:'abcdef',1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg',7:'abc',8:'abcdefg',9:'abcdfg'};
+var tk=[],dg=[],ls=[],ps=[],ex=[],ly=[],dt=[];
+for(var i=0;i<30;i++){var t=document.createElement('i');ticks.appendChild(t);tk.push(t)}
+for(i=0;i<2;i++){var b=document.createElement('b');b.className='dg';b.innerHTML=SEGS.split('').map(function(c){return '<i class="s-'+c+'"></i>'}).join('');digits.appendChild(b);dg.push(b)}
+var layersAnchor=$('.hm-light',card);
+CH.forEach(function(c,k){
+  var li=document.createElement('li');li.textContent=c.k;labels.appendChild(li);ls.push(li);
+  var p=document.createElement('p');p.setAttribute('aria-hidden','true');p.innerHTML='<span></span>';p.firstChild.textContent=c.line;linesEl.appendChild(p);ps.push(p);
+  var e=c.cta?mkCta():mkChips(c);extra.appendChild(e);ex.push(e);
+  var l=mkLayer(c,k===0);card.insertBefore(l,layersAnchor);ly.push(l);
+  var li2=document.createElement('li'),bt=document.createElement('button');bt.type='button';bt.className='hm-dot';bt.setAttribute('aria-label','Chapter '+(k+1)+': '+c.name);
+  bt.addEventListener('click',function(){goTo(c.from+(k?.012:0))});li2.appendChild(bt);dots.appendChild(li2);dt.push(bt);
+});
+var tiles=$$('.hm-t',ly[2]);
+var lights=$$('.hm-light i',card);
+
+/* ---- stacked version (reduced motion, short landscape) ---- */
+(function(){
+  var st=$('#hmStack');
+  CH.forEach(function(c){
+    var a=document.createElement('article');a.className='hm-sc';
+    var cd=document.createElement('div');cd.className='hm-card';cd.appendChild(mkLayer(c,false));a.appendChild(cd);
+    var dn=document.createElement('p');dn.className='dn';dn.textContent='Day '+c.day;a.appendChild(dn);
+    var h=document.createElement('h3');h.textContent=c.name;a.appendChild(h);
+    var p=document.createElement('p');p.className='ln';p.textContent=c.line;a.appendChild(p);
+    if(c.chips.length)a.appendChild(mkChips(c));
+    if(c.cta){var x=mkCta();x.classList.add('on');x.style.cssText='position:static;visibility:visible;opacity:1';a.appendChild(x)}
+    st.appendChild(a);
+  });
+})();
+
+/* ---- digits and ticks ---- */
+var lastDays=-1,lastCh=-1;
+function showDigit(el,n){var on=SEG[n];$$('i',el).forEach(function(i){i.classList.toggle('on',on.indexOf(i.className.replace(/\bon\b/,'').trim().slice(2))>-1)})}
+function setDays(d){
+  if(d===lastDays)return;lastDays=d;
+  showDigit(dg[0],Math.floor(d/10));showDigit(dg[1],d%10);
+  tk.forEach(function(t,k){t.classList.toggle('off',k>=d)});
+  am.textContent=d===0?'HOME':'DAYS';
+  sr.textContent=d===0?'Day 0 of 30. Home.':'Day '+d+' of 30';
+}
+function setChapter(n){
+  if(n===lastCh)return;var old=lastCh;lastCh=n;
+  cap.textContent=CH[n].name;
+  ls.forEach(function(l,k){l.classList.toggle('on',k===n)});
+  dt.forEach(function(b,k){if(k===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
+  ps.forEach(function(p,k){
+    if(k===n){p.classList.remove('out');p.classList.add('on');p.removeAttribute('aria-hidden')}
+    else if(p.classList.contains('on')){p.classList.remove('on');p.classList.add('out');p.setAttribute('aria-hidden','true');setTimeout(function(){if(lastCh!==k)p.classList.remove('out')},650)}
+    else{p.classList.remove('out')}
+  });
+  ex.forEach(function(e,k){e.classList.toggle('on',k===n)});
+  ly.forEach(function(l,k){
+    if(k===n){l.classList.remove('prev');l.classList.add('on')}
+    else if(l.classList.contains('on')){l.classList.remove('on');l.classList.add('prev');setTimeout(function(){l.classList.remove('prev')},600)}
+    else l.classList.remove('prev');
+  });
+}
+var lastLight='';
+function light(p){
+  var dawn=clamp(1-p/.45,0,1),eve=clamp((p-.55)/.35,0,1),day=clamp(1-dawn-eve,0,1)*.9,calm=clamp((p-.92)/.08,0,1)*.12;
+  var s=[dawn,day,eve,calm].map(function(v){return v.toFixed(2)}).join();if(s===lastLight)return;lastLight=s;
+  [dawn,day,eve,calm].forEach(function(v,k){lights[k].style.opacity=v.toFixed(3)});
+}
+function para(p){
+  var m=clamp((p-.40)/.38,0,1)-.5;
+  tiles.forEach(function(t,k){var im=$('img',t);im.style.setProperty('--py',(m*16*(k===1?-1:1)*(k===2?.7:1)).toFixed(2)+'px')});
+}
+function render(p){
+  setDays(daysAt(p));setChapter(chAt(p));light(p);para(p);
+}
+
+/* ---- progress: ScrollTrigger if present, else a rAF scroll listener; light lerp ---- */
+var sec=$('#honeymoon'),target=0,cur=0,raf=0;
+function loop(){
+  raf=0;var d=target-cur;
+  if(Math.abs(d)<.0004){cur=target;render(cur);return}
+  cur+=d*.14;render(cur);raf=requestAnimationFrame(loop);
+}
+function goTo(p){
+  var r=sec.getBoundingClientRect(),top=r.top+scrollY,max=r.height-innerHeight;
+  scrollTo({top:top+max*p,behavior:RM?'auto':'smooth'});
+}
+$('#hmSkip').addEventListener('click',function(){
+  var r=sec.getBoundingClientRect();
+  scrollTo({top:r.bottom+scrollY-0,behavior:RM?'auto':'smooth'});
+});
+render(0);
+if(!RM)track(sec,function(p){target=p;if(!raf)raf=requestAnimationFrame(loop)});
 })();
 
 })();

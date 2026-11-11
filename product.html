@@ -5,18 +5,16 @@
   colours, packs, specs, sizeNote, care, inPack, whatFits, hotspots, gallery, strength, faqs, related, reviews, saleEnds).
   Colour hexes and variant IDs are the same values as STORE_DATA in combine.html. Basket: localStorage "tz-basket-v3", items {k,c,q}.
   TODO (not published by the store, shown as "not published yet"): baby specs, baby variant IDs, care instructions, 30-pack price and variant IDs (the pack-of-30 page states $39.99, Ivory and Black), customer reviews, FAQs from the store.
+  Adult colour photos wired (PHOTO_OK in the script): ivory, white, light-pink, light-purple, silver-birch. The other eight (black, blue, bronze, pink, rose-gold, teal, warm-taupe, gray)
+  and every wardrobe-color-<id>.jpg except ivory were generated but failed image QA (rim around the chrome caps / recolour block), so they are not requested; regenerate them.
   Missing image files (nearest real photo is shown, with a "Preview photo" chip on the colour photo):
     product-adult-black.jpg
     product-adult-blue.jpg
     product-adult-bronze.jpg
     product-adult-pink.jpg
-    product-adult-white.jpg
-    product-adult-light-pink.jpg
-    product-adult-light-purple.jpg
     product-adult-rose-gold.jpg
     product-adult-teal.jpg
     product-adult-warm-taupe.jpg
-    product-adult-silver-birch.jpg
     product-adult-gray.jpg
     product-kids-light-purple.jpg
     product-kids-ivory.jpg
@@ -1714,6 +1712,13 @@ body{background:var(--bg)}
 .pp-price s{color:var(--muted);font-size:1.0625rem}
 .pp-save{background:var(--sale);color:#fff;font-weight:700;font-size:.8125rem;padding:5px 12px;border-radius:999px}
 .pp-per{flex-basis:100%;font-size:.9375rem;color:var(--muted)}
+.pp-desc{max-width:780px}
+.pp-desc h2{font-size:clamp(1.7rem,2.8vw,2.4rem);letter-spacing:-.02em;margin-bottom:clamp(18px,2.4vw,28px)}
+.pp-dl{list-style:none;margin:0;padding:0;display:grid;gap:clamp(16px,2vw,22px)}
+.pp-dl li{display:grid;grid-template-columns:30px 1fr;gap:16px;align-items:start;line-height:1.55}
+.pp-dl .ck{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.pp-dl .ck svg{width:16px;height:16px;fill:none;stroke:var(--ok);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pp-dl b{font-weight:600}
 .pp-ben{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .pp-ben li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;line-height:1.5}
 .pp-ben svg{width:20px;height:20px;margin-top:2px;fill:none;stroke:var(--ok);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2071,6 +2076,10 @@ header.nav .menu-btn:active{transform:none}
     <div class="pp-ft"><span class="pp-note" id="ppFtN"></span><b id="ppFtT"></b><button class="btn pp-btn" id="ppFtAdd" type="button">Add selected to basket</button></div></div>
 </div></section>
 
+<section class="pp-sec" aria-labelledby="descH"><div class="pp-wrap pp-rv">
+  <div class="pp-desc"><h2 id="descH"></h2><ul class="pp-dl" id="ppDescL"></ul></div>
+</div></section>
+
 <section class="pp-sec" aria-labelledby="detH"><div class="pp-wrap pp-rv">
   <div class="sep" aria-hidden="true"><i></i><span class="sep-t">Details</span><i></i></div>
   <div class="pp-head"><h2 id="detH">Size, pack and <em>care</em></h2></div>
@@ -2119,7 +2128,7 @@ header.nav .menu-btn:active{transform:none}
 <footer class="foot" id="footer">
   <div class="wrap foot-top">
     <div class="ft-copy"><p class="ft-kick">Ready when you are</p><h2 id="cta-h">Give your closet a <em>new personality.</em></h2><p class="ft-sub">Soft to the touch, strong where it counts, and ready to ship free over $50.</p>
-      <div class="ft-shop"><a class="btn" href="#" data-store="adult">Shop Adult <svg class="ico"><use href="#i-arrow"/></svg></a><a class="btn ghost" href="#" data-store="kids">Shop Kids</a><a class="btn ghost" href="#" data-store="baby">Shop Baby</a></div></div>
+      <div class="ft-shop"><a class="btn" href="product.html?p=adult">Shop Adult <svg class="ico"><use href="#i-arrow"/></svg></a><a class="btn ghost" href="product.html?p=kids">Shop Kids</a><a class="btn ghost" href="product.html?p=baby">Shop Baby</a></div></div>
     <form class="ft-form" id="fNews" novalidate>
       <label class="ft-lab" for="fEmail">Get closet ideas by email</label>
       <div class="ft-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><input id="fEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="fMsg"><button type="submit">Sign me up <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
@@ -2134,9 +2143,9 @@ header.nav .menu-btn:active{transform:none}
         <li><a id="sFb" style="--b:#1877F2" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.2-1.2 1.3-1.2H17V3.1C16.6 3 15.6 3 14.6 3 12.2 3 10.6 4.4 10.6 7v1.5H8v3h2.6V21H14v-9.5h2.6l.4-3z" fill="currentColor"/></svg><span>Facebook</span></a></li><li><a id="sIg" style="--b:#E4405F" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect class="ig" x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="12" cy="12" r="4" fill="none" stroke="url(#igG)" stroke-width="1.9"/><circle class="ig" cx="17.2" cy="6.8" r="1.25" fill="url(#igG)"/></svg><span>Instagram</span></a></li><li><a id="sPin" style="--b:#E60023" href="#" target="_blank" rel="noopener" aria-label="Techzoo on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.5 8.5 0 0 0-3.1 16.4c-.1-.7-.1-1.7 0-2.4l1-4.2s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.2 0 .8-.5 1.9-.7 3-.2.9.5 1.6 1.4 1.6 1.7 0 3-1.8 3-4.3 0-2.3-1.6-3.9-4-3.9-2.7 0-4.3 2-4.3 4.1 0 .8.3 1.7.7 2.2.1.1.1.2.1.3l-.3 1.1c0 .2-.1.2-.3.1-1.2-.5-2-2.3-2-3.7 0-3 2.2-5.8 6.3-5.8 3.3 0 5.9 2.4 5.9 5.5 0 3.3-2.1 6-5 6-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.8 1.9-1.2 2.5A8.5 8.5 0 1 0 12 3z" fill="currentColor"/></svg><span>Pinterest</span></a></li>
       </ul>
     </div>
-    <nav aria-label="Shop"><h3>Shop</h3><ul><li><a data-store="adult" href="#">Adult hangers</a></li><li><a data-store="kids" href="#">Kids hangers</a></li><li><a data-store="baby" href="#">Baby hangers</a></li><li><a data-store="all" href="#">All products</a></li></ul></nav>
-    <nav aria-label="Company"><h3>Company</h3><ul><li><a data-page="about" href="#">About us</a></li><li><a data-page="contact" href="#">Contact</a></li><li><a data-page="blog" href="#">Blog</a></li></ul></nav>
-    <nav aria-label="Policies"><h3>Policies</h3><ul><li><a data-page="warranty" href="#">Warranty policy</a></li><li><a data-page="terms" href="#">Terms &amp; conditions</a></li><li><a data-page="privacy" href="#">Privacy policy</a></li></ul></nav>
+    <nav aria-label="Shop"><h3>Shop</h3><ul><li><a href="product.html?p=adult">Adult hangers</a></li><li><a href="product.html?p=kids">Kids hangers</a></li><li><a href="product.html?p=baby">Baby hangers</a></li><li><a href="combine.html#shop">Shop all</a></li></ul></nav>
+    <nav aria-label="Pages"><h3>Pages</h3><ul><li><a href="combine.html">Home</a></li><li><a href="adult-collection.html">Adult collection</a></li><li><a href="kids-collection.html">Kids collection</a></li><li><a href="baby-collection.html">Baby collection</a></li><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact</a></li><li><a data-page="blog" href="#">Blog</a></li></ul></nav>
+    <nav aria-label="Policies"><h3>Policies</h3><ul><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="warranty-policy.html">Warranty policy</a></li><li><a href="terms-conditions.html">Terms &amp; conditions</a></li><li><a href="shipping-delivery.html">Shipping &amp; delivery</a></li><li><a href="return-exchange.html">Return &amp; exchange</a></li></ul></nav>
   </div>
   <div class="wrap foot-base">
     <ul class="pay" id="pay" aria-label="Accepted payment methods"></ul>
@@ -2292,6 +2301,8 @@ const FAQ_COMMON=[
   ['Do you offer free shipping and returns?',POLICY.shipping+' '+POLICY.returns],
   ['Is there a warranty?',POLICY.warranty+' <a href="'+BASE+POLICY.warrantyUrl+'" target="_blank" rel="noopener">Read the warranty policy</a>.']
 ];
+/* colour photos that passed image QA; any other colour shows the ivory photo and the Preview chip (no request is made for files that are not wired) */
+const PHOTO_OK={'product-adult':['ivory','white','light-pink','light-purple','silver-birch'],'wardrobe-color':['ivory']};
 const PRODUCTS={
   adult:{
     key:'adult',name:'Adult velvet hangers',subtitle:'Chic, sturdy and space-efficient.',
@@ -2300,6 +2311,7 @@ const PRODUCTS={
     basePrice:39.99,comparePrice:43.99,save:'Save $4.00',collection:'adult-collection.html',
     badges:[['i-feather','Non-slip velvet'],['i-feather','75 g build'],['i-shield','Holds up to 10 lbs'],['i-rotate','360° rotatable hook'],['i-expand','Slim and space-saving']],
     benefits:['Non-slip velvet keeps clothes in place and saves space on the rail.','Holds up to 10 lbs at only 75 g, from silk shirts to winter coats.','The hook rotates 360°, so you can reach your clothes from any angle.'],
+    feat:{title:'Built for heavier wardrobes',items:[['Hang it all, from silk to winter coats.','Each hanger holds up to 10 lbs at only 75 g, so one slim hanger handles everything from silk shirts to heavy coats.'],['Clothes stay exactly where you hang them.','The plush velvet coating prevents slipping and protects delicate fabrics like silk and satin from snags or stretching.'],['Reach any piece from any angle.','The 360° rotatable hook turns freely, and the slim 17.7 in design saves space on the rail.']]},
     colours:[
       {id:'ivory',name:'Ivory',hex:'#EFE6D2',variantId:'51926164373871'},{id:'black',name:'Black',hex:'#1F1B18',variantId:'51926164406639'},
       {id:'blue',name:'Blue',hex:'#6F89A6',variantId:'51926164439407'},{id:'bronze',name:'Bronze',hex:'#9A7A56',variantId:'51926164472175'},
@@ -2308,7 +2320,7 @@ const PRODUCTS={
       {id:'rose-gold',name:'Rose Gold',hex:'#C99A8A',variantId:'51926164636015'},{id:'teal',name:'Teal',hex:'#5F8C88',variantId:'51926164668783'},
       {id:'warm-taupe',name:'Warm Taupe',hex:'#A8927F',variantId:'51926164701551'},{id:'silver-birch',name:'Silver Birch',hex:'#C9C6BD',variantId:'51941426233711'},
       {id:'gray',name:'Gray',hex:'#8C8984',variantId:'51941426266479'}
-    ].map(c=>Object.assign(c,{image:'product-adult-'+c.id+'.jpg'})),
+    ].map(c=>Object.assign(c,{real:PHOTO_OK['product-adult'].indexOf(c.id)>-1,image:'product-adult-'+(PHOTO_OK['product-adult'].indexOf(c.id)>-1?c.id:'ivory')+'.jpg'})),
     fallbackImage:['product-adult-ivory.jpg'],
     packs:[
       {n:50,label:'Pack of 50',tag:null,price:39.99},
@@ -2349,6 +2361,7 @@ const PRODUCTS={
     basePrice:39.99,comparePrice:43.99,save:'Save $4.00',collection:'kids-collection.html',
     badges:[['i-feather','Non-slip velvet'],['i-feather','65 g build'],['i-shield','Holds up to 7 lbs'],['i-rotate','360° rotatable hook'],['i-expand','14 in wide']],
     benefits:['A soft, non-slip surface keeps small garments securely in place.','14 in wide and 65 g, and it holds up to 7 lbs.','Slim and space-saving, so a child’s closet stays tidy and organised.'],
+    feat:{title:'Built for smaller wardrobes',items:[['Sized for small garments.','At 14 in wide and 65 g, these hangers suit children’s clothes and hold up to 7 lbs.'],['A soft grip that keeps clothes in place.','The non-slip velvet surface holds small garments securely, so nothing slides off the shoulder.'],['A tidy closet that stays tidy.','Slim, space-saving hangers with a 360° rotatable hook keep a child’s wardrobe organised and easy to reach.']]},
     colours:[
       {id:'light-purple',name:'Light Purple',hex:'#C5B6D3',variantId:'51941437276527'},{id:'ivory',name:'Ivory',hex:'#EFE6D2',variantId:'51854772207983'},
       {id:'light-blue',name:'Light Blue',hex:'#B4C9DC',variantId:'51941433344367'},{id:'black',name:'Black',hex:'#1F1B18',variantId:'51854772273519'},
@@ -2386,6 +2399,7 @@ const PRODUCTS={
     basePrice:39.99,comparePrice:43.99,save:'Save $4.00',collection:'baby-collection.html',
     badges:[['i-feather','Soft, secure velvet'],['i-expand','Compact newborn size'],['i-feather','Lightweight and sturdy'],['i-shield','Pack of 50']],
     benefits:['Soft, secure velvet keeps baby clothes in place without slipping.','Lightweight yet sturdy, in a compact newborn size.','Fifty hangers in a pack, ideal for a well-organised nursery.'],
+    feat:{title:'Made for tiny wardrobes',items:[['Soft and secure for newborn clothes.','The velvet surface keeps tiny garments in place without slipping.'],['Lightweight, yet sturdy.','A compact newborn size with a lightweight but sturdy build.'],['Ready for a whole nursery.','Fifty hangers in every pack, ideal for a well-organised nursery.']]},
     /* TODO: baby variant IDs are not verified, so Buy it now opens the product page where the colour is chosen. */
     colours:[
       {id:'light-pink',name:'Light Pink',hex:'#EBCBCB',variantId:null},{id:'light-blue',name:'Light Blue',hex:'#B4C9DC',variantId:null},
@@ -2454,6 +2468,7 @@ function renderStatic(){
   $('#ppBadges').innerHTML=P.badges.map(b=>'<li>'+ICON(b[0])+esc(b[1])+'</li>').join('');
   {const w=P.name.split(' ');$('#ppName').innerHTML=esc(w[0])+' <em>'+esc(w.slice(1).join(' '))+'</em>'}$('#ppSub').textContent=P.subtitle;
   $('#ppBen').innerHTML=P.benefits.map(b=>'<li>'+CK+'<span>'+esc(b)+'</span></li>').join('');
+  if(P.feat){$('#descH').textContent=P.feat.title;$('#ppDescL').innerHTML=P.feat.items.map(i=>'<li><span class="ck">'+CK+'</span><span><b>'+esc(i[0])+'</b> '+esc(i[1])+'</span></li>').join('')}
   $('#ppShipF').innerHTML=
     '<li>'+ICON('i-return')+'<span>Hassle-free returns, postage paid</span></li>'+
     '<li>'+ICON('i-shield')+'<span>1-year limited warranty. <a href="'+BASE+POLICY.warrantyUrl+'" target="_blank" rel="noopener">Policy</a></span></li>'+
@@ -2521,7 +2536,10 @@ function acc(box,items,pre){
 let gal=[],curIm='A',chipFor=null,autoReset=function(){};
 function buildGallery(){
   const c=colour();
-  gal=[{alt:'Techzoo '+P.name.toLowerCase()+' in '+c.name,list:colourList(c),colour:true}].concat(P.gallery.map(g=>({alt:g[1],list:[g[0]]})));
+  gal=[{alt:'Techzoo '+P.name.toLowerCase()+' in '+c.name,list:colourList(c),colour:true,preview:c.real===false}].concat(P.gallery.map(g=>({alt:g[1],list:[g[0]]})));
+  if(key==='adult'&&PHOTO_OK['wardrobe-color'].indexOf(c.id)>-1)gal.splice(1,0,{alt:'Techzoo adult velvet hangers in '+c.name+' on a wardrobe rail',list:['wardrobe-color-'+c.id+'.jpg'],pos:'17% 50%'});
+  /* warm the cache for the previous and next colour so switching never waits */
+  if(key==='adult'){const cl=P.colours,at=cl.findIndex(x=>x.id===c.id);[-1,1].forEach(d=>{const n=cl[(at+d+cl.length)%cl.length];if(n.real){const pi=new Image();pi.decoding='async';pi.src=img(n.image)}})}
   $('#ppThumbs').innerHTML=gal.map((g,i)=>'<button class="pp-th" role="tab" type="button" aria-label="Photo '+(i+1)+'" data-i="'+i+'"><img alt="" width="84" height="105" loading="'+(i?'lazy':'eager')+'" decoding="async"></button>').join('');
   gal.forEach((g,i)=>probe(g.list).then(r=>{g.src=r.src;g.ok=r.ok;const t=$$('.pp-th img')[i];if(t)t.src=r.src;if(i===0&&show.pending===0)show(0,true)}));
 }
@@ -2533,11 +2551,13 @@ function show(i,instant){
   probe(g.list).then(r=>{
     if(st.idx!==i)return;g.src=r.src;g.ok=r.ok;
     const from=$('#ppIm'+curIm),to=$('#ppIm'+(curIm==='A'?'B':'A'));
-    to.src=r.src;to.alt=g.alt;to.classList.remove('pop');
+    to.src=r.src;to.alt=g.alt;to.style.objectPosition=g.pos||'';to.classList.remove('pop');
+    (to.decode?to.decode().catch(()=>{}):Promise.resolve()).then(()=>{if(st.idx!==i)return;
     if(instant||RM){from.classList.remove('on');to.classList.add('on');from.style.transition=to.style.transition='none';requestAnimationFrame(()=>{from.style.transition=to.style.transition=''})}
     else{to.classList.add('on');from.classList.remove('on');void to.offsetWidth;to.classList.add('pop')}
     curIm=curIm==='A'?'B':'A';
-    $('#ppChip').hidden=!(g.colour&&!r.ok);
+    });
+    $('#ppChip').hidden=!(g.colour&&(!r.ok||g.preview));
   });
   const th=$$('.pp-th')[i];if(th&&th.scrollIntoView)th.scrollIntoView({block:'nearest',inline:'nearest'});
 }
