@@ -2003,11 +2003,6 @@ header.nav .menu-btn:active{transform:none}
   .dock-btn .dock-lab{display:none}.dock-btn{padding:0 .5625rem 0 .5625rem}
 }
 
-/* ONE SECTION PER SCREEN: each info block starts on a fresh screen, clear of the nav, with room to breathe */
-.pp-sec{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + clamp(1rem,3.5svh,2.75rem)) clamp(2.25rem,6svh,5rem)}
-.pp-sec>.pp-wrap{width:100%}
-main section[id],main section{scroll-margin-top:0}
-
 /* ===== REM SCALING: desktop is one layout that scales with the window (1rem = 16px at 1920px wide). Phones and tablets keep the normal 16px root. ===== */
 @media (min-width:900px) and (hover:hover) and (pointer:fine){html{font-size:calc(100vw / 120)}}
 </style>
