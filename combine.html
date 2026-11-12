@@ -1917,6 +1917,31 @@ html.rm .nx.hmz{height:auto}html.rm .hmz .morn-stick{display:none}html.rm .hmz .
   .hmz .hm-lines p{font-size:.95rem;line-height:1.3}
   .hmz .hm-card{width:min(100%,calc((100svh - 330px) * 4 / 3))}
 }
+
+/* ===== Windows display scaling (125% and 150% make the viewport about 1536x740 / 1280x600 / 1093x614) ===== */
+@media (min-width:1000px) and (max-height:800px){
+  html{font-size:15px}
+  .dock{left:var(--s2);bottom:var(--s2)}
+  .dock-btn{height:42px;padding:0 9px;gap:0;font-size:.8125rem}
+  .dock-btn .dock-lab{display:none}
+  .dock-dot{width:22px;height:22px}
+  .sticky-shop{right:var(--s2);bottom:var(--s2)}
+  .sticky-shop .btn{min-height:42px;padding:8px 20px;font-size:.8125rem}
+}
+@media (min-width:1000px) and (max-height:660px){
+  html{font-size:14px}
+  .dock-btn .dock-lab{display:none}.dock-btn{padding:0 9px 0 9px}
+}
+
+/* lifestyle carousel: keep the product strip readable on smaller viewports */
+@media (max-width:1500px){
+  .g-item .mp{max-width:calc(100% - 20px);padding:8px;gap:8px}
+  .g-item .mp b{font-size:12px;flex:1 1 auto;min-width:5.5em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .g-item:not(.wide) .mp .vd{display:none}
+  .g-item .mp .fr{width:36px;height:36px}
+  .g-item .mp .vd{margin-right:4px}
+  .g-item .mp button{padding:8px 12px}
+}
 </style>
 </head>
 <body>
